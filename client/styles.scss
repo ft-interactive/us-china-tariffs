@@ -21,11 +21,11 @@ span.item__name {
 }
 
 .item__transport span.item__bullet {
-  color: #208fce;
+  color: black;
 }
 
 .item__technology span.item__bullet {
-  color: #0f5499;
+  color: #c2b7af;
 }
 
 #key {
@@ -59,6 +59,10 @@ span.item__name {
 
     span.summary-item {
       line-height: 6px;
+
+      .item__bullet {
+        font-size: 25px;
+      }
     }
   }
 
