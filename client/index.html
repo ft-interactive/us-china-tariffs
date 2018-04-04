@@ -7,6 +7,15 @@
 {{ data.content.intro }}
 {% endmarkdown %}
 
+<div id="key">
+  {% for group in groups %}
+    <span class="summary-item item__{{ group }}">
+      <span class="item__bullet">•</span>
+      <span class="item__name">{{ group | capitalize }}</span>
+    </span>
+  {% endfor %}
+</div>
+
 <div id="summary-graphic">
 {% for group, items in groupedSortedItems %}
   <div class="summary-graphic-group">
@@ -19,6 +28,7 @@
 
 {% for group, items in groupedItems %}
   <h2 id="{{ group }}">{{ group | formatDate('dddd, MMMM D, YYYY') }}</h2>
+  <p>{{ data.content[group] }}</p>
   <ol>
     {% for item in items %}
     <li class="item__{{ item.category }}">

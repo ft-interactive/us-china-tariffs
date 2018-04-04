@@ -2,27 +2,7 @@
 @import 'o-grid/main';
 @import 'components/core/main';
 
-#summary-graphic {
-  margin: 2em 0;
-
-  .summary-graphic-group {
-    margin-bottom: 1em;
-    display: flex;
-    flex-wrap: wrap;
-
-    div:first-child {
-      flex: 100%;
-      margin-bottom: 10px;
-    }
-
-    span.summary-item {
-      // line-height: 0;
-      // word-wrap: break-word;
-      line-height: 6px;
-    }
-  }
-
-}
+$bullet-size: 35px;
 
 span.item__name {
   margin-left: 15px;
@@ -48,6 +28,42 @@ span.item__name {
   color: #0f5499;
 }
 
+#key {
+  .summary-item {
+    position: relative;
+    margin-right: 10px;
+
+    .item__bullet {
+      font-size: $bullet-size;
+      margin-right: 5px;
+      vertical-align: middle;
+      position: absolute;
+      top: -13px;
+    }
+  }
+
+}
+
+#summary-graphic {
+  margin: 2em 0;
+
+  .summary-graphic-group {
+    margin-bottom: 1em;
+    display: flex;
+    flex-wrap: wrap;
+
+    div:first-child {
+      flex: 100%;
+      margin-bottom: 10px;
+    }
+
+    span.summary-item {
+      line-height: 6px;
+    }
+  }
+
+}
+
 :root .o-typography-wrapper ol {
   column-count: 3;
 
@@ -64,7 +80,7 @@ span.item__name {
     }
 
     span.item__bullet {
-      font-size: 35px;
+      font-size: $bullet-size;
       margin-right: 5px;
       vertical-align: middle;
       position: absolute;
