@@ -33,13 +33,13 @@ export default async (environment = 'development') => {
 
   const data = await bertha.get('1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo', ['items', 'content|object'], { republish: true });
   const groupedItems = _.groupBy(data.items, item => item.date);
-
-  console.log(data.content);
+  const groupedSortedItems = _.groupBy(_.sortBy(_.sortBy(data.items, item => item.category), item => -new Date(item.date)), item => item.date);
 
   return {
     ...d,
     data,
     groupedItems,
+    groupedSortedItems,
     flags,
     onwardJourney,
   };

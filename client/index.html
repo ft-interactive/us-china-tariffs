@@ -8,7 +8,7 @@
 {% endmarkdown %}
 
 <div id="summary-graphic">
-{% for group, items in groupedItems %}
+{% for group, items in groupedSortedItems %}
   <div class="summary-graphic-group">
     <div><a href="#{{ group }}">{{ group | formatDate('dddd, MMMM D') }}</a> ({{ items | length }} items)</div>
     {% for item in items %}<span class="summary-item item__{{ item.category }}"><span class="item__bullet">•</span></span>{% endfor %}
