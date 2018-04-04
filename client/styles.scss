@@ -72,10 +72,6 @@ span.item__name {
   column-count: 1;
 
   @include oGridRespondTo(M) {
-    column-count: 2;
-  }
-
-  @include oGridRespondTo(L) {
     column-count: 3;
   }
 
@@ -88,7 +84,7 @@ span.item__name {
 
     &:before {
       font-size: 0.8em;
-      top: -3px;
+      top: -2px;
     }
 
     span.item__bullet {
