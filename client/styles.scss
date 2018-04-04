@@ -2,6 +2,77 @@
 @import 'o-grid/main';
 @import 'components/core/main';
 
+#summary-graphic {
+  margin: 2em 0;
+
+  .summary-graphic-group {
+    margin-bottom: 1em;
+    display: flex;
+    flex-wrap: wrap;
+
+    div:first-child {
+      flex: 100%;
+      margin-bottom: 10px;
+    }
+
+    span.summary-item {
+      // line-height: 0;
+      // word-wrap: break-word;
+      line-height: 6px;
+    }
+  }
+
+}
+
+span.item__name {
+  margin-left: 15px;
+}
+
+.item__agriculture span.item__bullet {
+  color: #9dbf57;
+}
+
+.item__industrials span.item__bullet {
+  color: #EB5E8D;
+}
+
+.item__energy span.item__bullet {
+  color: #70DCE6;
+}
+
+.item__transportation span.item__bullet {
+  color: #208fce;
+}
+
+.item__technology span.item__bullet {
+  color: #0f5499;
+}
+
+:root .o-typography-wrapper ol {
+  column-count: 3;
+
+  li {
+    padding-left: 31px;
+    padding-bottom: 5px;
+    font-size: 1em;
+    line-height: 1.1em;
+    font-family: MetricWeb, sans-serif;
+
+    &:before {
+      font-size: 0.8em;
+      top: -3px;
+    }
+
+    span.item__bullet {
+      font-size: 35px;
+      margin-right: 5px;
+      vertical-align: middle;
+      position: absolute;
+      top: -3px;
+    }
+  }
+}
+
 /*
       TODO: delete this comment
 

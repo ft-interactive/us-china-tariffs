@@ -1,3 +1,6 @@
+import * as bertha from 'bertha-client';
+import _ from 'underscore';
+
 import article from './article';
 import getFlags from './flags';
 import getOnwardJourney from './onward-journey';
@@ -28,8 +31,15 @@ export default async (environment = 'development') => {
 
   */
 
+  const data = await bertha.get('1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo', ['items', 'content|object'], { republish: true });
+  const groupedItems = _.groupBy(data.items, item => item.date);
+
+  console.log(data.content);
+
   return {
     ...d,
+    data,
+    groupedItems,
     flags,
     onwardJourney,
   };

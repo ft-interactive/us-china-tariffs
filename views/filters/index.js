@@ -2,6 +2,7 @@ import markdownIt from 'markdown-it';
 import removeMarkdown from 'remove-markdown';
 import { utcFormat } from 'd3-time-format';
 import nunjucks from 'nunjucks';
+import moment from 'moment';
 
 const SafeString = nunjucks.runtime.SafeString;
 
@@ -107,4 +108,8 @@ export function getMainImage(img) {
   if (Object.prototype.hasOwnProperty.call(img, 'uuid')) return imageUUID(img.uuid);
   else if (Object.prototype.hasOwnProperty.call(img, 'url')) return img.url;
   return '';
+}
+
+export function formatDate(date, format) {
+  return moment(date).format(format);
 }
