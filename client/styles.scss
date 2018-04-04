@@ -69,7 +69,15 @@ span.item__name {
 }
 
 :root .o-typography-wrapper ol {
-  column-count: 3;
+  column-count: 1;
+
+  @include oGridRespondTo(M) {
+    column-count: 2;
+  }
+
+  @include oGridRespondTo(L) {
+    column-count: 3;
+  }
 
   li {
     padding-left: 31px;
