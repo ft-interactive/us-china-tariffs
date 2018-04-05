@@ -11,7 +11,7 @@
   {% for group in groups %}
     <span class="summary-item item__{{ group }}">
       <span class="item__bullet">•</span>
-      <span class="item__name">{{ group | capitalize }}</span>
+      <span class="item__name">{% if group === 'industrials' %}Industrials/technology{% else %}{{ group | capitalize }}{% endif %}</span>
     </span>
   {% endfor %}
 </div>
