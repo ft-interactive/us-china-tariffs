@@ -32,14 +32,14 @@ export default async (environment = 'development') => {
   */
 
   const data = await bertha.get('1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo', ['items', 'content|object', 'totalvalues|object'], { republish: true });
-  const groups = _.uniq(_.pluck(data.items, 'category'));
+  const groups = _.sortBy(_.uniq(_.pluck(data.items, 'category')));
   const groupedItems = _.groupBy(_.sortBy(data.items, item => -item.dollareffect), item => item.date);
 
   const categorySummary = _.map(groupedItems, (dateGroup) => {
     return {
       dateGroup: dateGroup[0].date,
       country: dateGroup[0].country,
-      categories: _.groupBy(dateGroup, 'category'),
+      categories: _.groupBy(_.sortBy(dateGroup, a => a.category), 'category'),
     };
   });
   const totalValues = data.totalvalues;
