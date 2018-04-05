@@ -9,7 +9,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
-  publishedDate: new Date(),
+  publishedDate: new Date('2018-04-05T02:48:48.600Z'),
 
   headline: 'The looming US-China trade war',
 
