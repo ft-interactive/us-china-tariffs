@@ -33,7 +33,11 @@ export default async (environment = 'development') => {
 
   const data = await bertha.get('1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo', ['items', 'content|object', 'totalvalues|object'], { republish: true });
   const groups = _.sortBy(_.uniq(_.pluck(data.items, 'category')));
-  const groupedItems = _.groupBy(_.sortBy(data.items, item => -item.dollareffect), item => item.date);
+
+  const itemsWithoutValues = data.items.filter(a => a.dollareffect === null);
+  const itemsWithValues = _.sortBy(data.items.filter(a => a.dollareffect !== null), item => -item.dollareffect);
+  const itemsSortedByDollarEffect = itemsWithValues.concat(itemsWithoutValues);
+  const groupedItems = _.groupBy(itemsSortedByDollarEffect, item => item.date);
 
   const categorySummary = _.map(groupedItems, (dateGroup) => {
     return {
