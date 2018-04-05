@@ -3,6 +3,7 @@ import removeMarkdown from 'remove-markdown';
 import { utcFormat } from 'd3-time-format';
 import nunjucks from 'nunjucks';
 import moment from 'moment';
+import _ from 'underscore';
 
 const SafeString = nunjucks.runtime.SafeString;
 
@@ -112,4 +113,12 @@ export function getMainImage(img) {
 
 export function formatDate(date, format) {
   return moment(date).format(format);
+}
+
+export function getDollarSum(data) {
+  return _.reduce(_.pluck(data, 'dollareffectgroup'), (a, b) => a + b);
+}
+
+export function roundBillion(number) {
+  return Math.round((number * 100) / 100000000000);
 }
