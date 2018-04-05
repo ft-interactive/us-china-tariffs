@@ -1,11 +1,11 @@
 export default (environment = 'development') => ({ // eslint-disable-line
 
   // link file UUID
-  id: '',
+  id: 'cfd69d82-3871-11e8-8b98-2f31af407cc8',
 
   // canonical URL of the published page
   //  get filled in by the ./configure script
-  url: '',
+  url: 'https://ig.ft.com/us-china-tariffs/',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
