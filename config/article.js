@@ -1,31 +1,30 @@
 export default (environment = 'development') => ({ // eslint-disable-line
 
   // link file UUID
-  id: '$uuid',
+  id: '',
 
   // canonical URL of the published page
-  // "$url" get filled in by the ./configure script
-  url: '$url',
+  //  get filled in by the ./configure script
+  url: '',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'Politics and the English Language',
+  headline: 'The looming US-China trade war',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Political language is designed to make lies sound truthful' +
-           'and murder respectable, and to give an appearance of solidity to pure wind',
+  summary: 'Explore a comprehensive list of the more than 1,500 items threatened by new tariffs',
 
   topic: {
-    name: 'Starter Kit',
-    url: '/foo',
+    name: 'Trade disputes',
+    url: 'https://www.ft.com/stream/49181791-a1a9-4966-ac30-010846ec76d8',
   },
 
-  relatedArticle: {
-    text: 'Related article »',
-    url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
-  },
+  // relatedArticle: {
+  //   text: 'Related article »',
+  //   url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
+  // },
 
   mainImage: {
     title: '',
@@ -33,7 +32,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
     credit: '',
 
     // You can provide a UUID to an image and it was populate everything else
-    uuid: 'c4bf0be4-7c15-11e4-a7b8-00144feabdc0',
+    uuid: '87851dec-3835-11e8-8eee-e06bde01c544',
 
     // You can also provide a URL
     // url: 'https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Fc4bf0be4-7c15-11e4-a7b8-00144feabdc0?source=ig&fit=scale-down&width=700',
@@ -42,19 +41,20 @@ export default (environment = 'development') => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Author One', url: '/foo/bar' },
-    { name: 'Author Two' },
+    { name: 'Joanna S Kao', url: 'https://www.ft.com/joanna-s-kao' },
+    { name: 'Ed Crooks', url: 'https://www.ft.com/stream/42dab372-28d1-364c-b4f2-fc7c4a07e906' },
+    { name: 'Jane Pong', url: 'https://www.ft.com/jane-pong' },
   ],
 
   // Appears in the HTML <title>
   title: '',
 
   // meta data
-  description: '',
+  description: 'Explore a comprehensive list of the more than 1,500 items threatened by new tariffs',
 
   /*
   TODO: Select Twitter card type -
-        "summary" or "summary_large_image"
+        summary or summary_large_image
 
         Twitter card docs:
         https://dev.twitter.com/cards/markup
@@ -78,7 +78,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
   // twitterRelatedAccounts: ['authors_account_here', 'ftdata'],
 
   // Fill out the Facebook/Twitter metadata sections below if you want to
-  // override the "General social" options above
+  // override the General social options above
 
   // TWITTER METADATA (for Twitter cards)
   // twitterImage: '',
@@ -117,7 +117,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
     /*
     Product name
 
-    This will usually default to "IG"
+    This will usually default to IG
     however another value may be needed
     */
     // product: '',
