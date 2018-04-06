@@ -18,6 +18,9 @@
 
 <div id="summary-graphic">
   <div class="bar-group-name"><a href="#2018-04-05"> {{ "2018-04-05" | formatDate('dddd, MMMM D') }}</a> ($100bn in US imports from China, proposed tariffs)</div>
+  <div class="bar-container">
+    <span class="bar item__other" data-category="other" style="width: 100%;"></span>
+  </div>
   {% for group in categorySummary %}
   <div class="bar-group-name"><a href="#{{ group.dateGroup }}">{{ group.dateGroup | formatDate('dddd, MMMM D') }}</a> (${{ totalValues[group.dateGroup] | roundBillion }}bn in {% if group.country == 'China' %}Chinese imports from the US{% else %}US imports from China{% endif %}{% if group.dateGroup === '2018-03-23' or group.dateGroup === '2018-04-02' %}, tariffs in effect{% else %}, proposed tariffs{% endif %})</div>
   <div class="bar-container">
