@@ -9,7 +9,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
-  publishedDate: new Date(),
+  publishedDate: new Date('2018-04-06T02:00:36.801Z'),
 
   headline: 'The looming US-China trade war',
 
@@ -59,7 +59,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
         Twitter card docs:
         https://dev.twitter.com/cards/markup
   */
-  twitterCard: 'summary',
+  twitterCard: 'summary_large_image',
 
   /*
   TODO: Do you want to tweak any of the
