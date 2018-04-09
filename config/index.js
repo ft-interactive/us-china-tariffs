@@ -21,12 +21,10 @@ export default async (environment = 'development') => {
   const timeline = data.timeline;
   const maxValue = _.pluck(timeline, 'value').reduce((a, b) => Math.max(a, b));
 
-  const categorySummary = _.map(groupedItems, (dateGroup) => {
+  const categorySummary = timeline.map((date) => {
     return {
-      dateGroup: dateGroup[0].date,
-      country: dateGroup[0].country,
-      categories: _.groupBy(_.sortBy(dateGroup, a => a.category), 'category'),
-      totalValue: timeline.filter(a => a.name === dateGroup[0].date)[0].value,
+      ...date,
+      categories: _.groupBy(_.sortBy(groupedItems[date.name], a => a.category), 'category'),
     };
   });
 
