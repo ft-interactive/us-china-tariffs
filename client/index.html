@@ -7,16 +7,36 @@
 {{ data.content.intro }}
 {% endmarkdown %}
 
-<div id="key">
-  {% for group in groups %}
-    <span class="summary-item item__{{ group }}">
-      <span class="item__bullet">•</span>
-      <span class="item__name">{% if group === 'industrials' %}Industrial products/technology{% else %}{{ group | capitalize }}{% endif %}</span>
-    </span>
-  {% endfor %}
+<div id="key-container">
+  <div>KEY</div>
+  <div id="key">
+    <div class="key-row">
+      {% for group in groups %}
+        <span class="summary-item item__{{ group }}">
+          <span class="key__bullet"></span>
+          <span class="item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
+        </span>
+      {% endfor %}
+      <span class="summary-item item__others">
+        <span class="key__bullet"></span>
+        <span class="item__name">Others*</span>
+      </span>
+    </div>
+    <div class="key-row">
+      <span class="summary-item item__chinese">
+        <span class="key__bullet"></span>
+        <span class="item__name">Chinese tariffs on US goods</span>
+      </span>
+      <span class="summary-item item__us">
+        <span class="key__bullet"></span>
+        <span class="item__name">US tariffs on Chinese goods</span>
+      </span>
+    </div>
+  </div>
 </div>
 
 <div id="summary-graphic">
+  <div id="summary-graphic__label">Total tariffs</div>
   <div class="bar-group-name"><a href="#2018-04-05"> {{ "2018-04-05" | formatDate('dddd, MMMM D') }}</a> ($100bn in US imports from China, proposed tariffs)</div>
   <div class="bar-container">
     <span class="bar item__other" data-category="other" style="width: 100%;"></span>

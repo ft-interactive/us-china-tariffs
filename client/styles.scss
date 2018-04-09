@@ -31,9 +31,28 @@ span.item__name {
   background: #0f5499;
 }
 
-// .bar.item__technology {
-//   background: #c2b7af;
-// }
+
+
+.item__agriculture span.key__bullet {
+  background: #9dbf57;
+}
+
+.item__industrials span.key__bullet {
+  background: #EB5E8D;
+}
+
+.item__energy span.key__bullet {
+  background: #70DCE6;
+}
+
+.item__transport span.key__bullet {
+  background: #0f5499;
+}
+
+.item__others span.key__bullet {
+  background: #c2b7af;
+}
+
 
 
 
@@ -53,28 +72,56 @@ span.item__name {
   color: #0f5499;
 }
 
-// .item__technology span.item__bullet {
-//   color: #c2b7af;
-// }
 
-#key {
-  .summary-item {
-    position: relative;
-    margin-right: 10px;
+#key-container {
+  #key {
+    background: oColorsGetPaletteColor('black-5');
+    margin-top: 5px;
 
-    .item__bullet {
-      font-size: $bullet-size;
-      margin-right: 5px;
-      vertical-align: middle;
-      position: absolute;
-      top: -13px;
+    .key-row {
+      padding: 10px;
+      display: flex;
+      justify-content: space-around;
+
+      .summary-item {
+        position: relative;
+        margin-right: 10px;
+
+        .key__bullet {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        .item__name {
+          margin-left: 0;
+        }
+
+        &.item__chinese .key__bullet {
+          background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691573-vwitu.svg);
+        }
+
+        &.item__us .key__bullet {
+          background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691501-bz2w0.svg);
+        }
+      }
     }
   }
-
 }
 
 #summary-graphic {
   margin: 2em 0;
+
+  #summary-graphic__label {
+    text-align: right;
+    text-transform: uppercase;
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid oColorsGetPaletteColor('black-20');
+    margin-bottom: 10px;
+  }
 
   .bar-group-name {
     margin-top: 1em;
