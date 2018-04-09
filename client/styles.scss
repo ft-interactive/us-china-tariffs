@@ -53,6 +53,14 @@ span.item__name {
   background: #c2b7af;
 }
 
+.item__chinese span.key__bullet {
+  background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691573-vwitu.svg);
+}
+
+.item__us span.key__bullet {
+  background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691501-bz2w0.svg);
+}
+
 
 
 
@@ -106,14 +114,6 @@ span.item__name {
         .item__name {
           margin-left: 0;
         }
-
-        &.item__chinese .key__bullet {
-          background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691573-vwitu.svg);
-        }
-
-        &.item__us .key__bullet {
-          background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691501-bz2w0.svg);
-        }
       }
     }
   }
@@ -132,38 +132,67 @@ span.item__name {
   }
 
   .bar-group-name {
+    width: 100%;
     margin-top: 1em;
     margin-bottom: 10px;
-
-    .bar-group-name-labels {
-      margin-left: 5px;
-    }
   }
 
+  .bar-wrapper-outer {
+    display: flex;
 
-  .bar-wrapper {
-    position: relative;
-
-    .bar-container__line {
-      position: absolute;
-      border-bottom: 1px solid oColorsGetPaletteColor('black-10');
+    .bar-wrapper {
+      position: relative;
       width: 100%;
-      height: 10px;
+
+      .bar-container__line {
+        position: absolute;
+        border-bottom: 1px solid oColorsGetPaletteColor('black-10');
+        width: 100%;
+        height: 10px;
+      }
+
+      .bar-container {
+        width: 100%;
+        height: 24px;
+        position: relative;
+
+        .bar {
+          float: left;
+          height: 20px;
+          z-index: 2;
+        }
+      }
     }
 
-    .bar-container {
-      width: 100%;
-      height: 24px;
-      position: relative;
+    .bar-group-metadata {
+      width: 150px;
+      display: flex;
+      justify-content: flex-end;
+      color: oColorsGetPaletteColor('black-60');
 
-      .bar {
-        float: left;
-        height: 20px;
-        z-index: 2;
+      .bar-group-metadata__value {
+        font-size: 1.3em;
+        line-height: 1em;
+        text-align: right;
+        margin-right: 10px;
+
+        @include oGridRespondTo($until: S) {
+          font-size: 1em;
+        }
+      }
+
+      .bar-group-metadata__proposal {
+        font-size: 0.8em;
+        font-style: italic;
+      }
+
+      .summary-item .key__bullet {
+        width: 26px;
+        height: 26px;
+        display: block;
       }
     }
   }
-
 }
 
 :root .o-typography-wrapper ol {
@@ -194,17 +223,3 @@ span.item__name {
     }
   }
 }
-
-/*
-      TODO: delete this comment
-
-      Write your code here - keep it neat!
-      Split logical parts of you project into components e.g.
-
-      /client
-        - /components
-            - /component-name
-                - styles.scss
-                - index.js
-                - template.html
-*/

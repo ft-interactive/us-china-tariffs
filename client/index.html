@@ -40,18 +40,35 @@
 
   {% for group in categorySummary %}
   <div class="bar-group-name">
-    <a href="#{{ group.name }}">{{ group.name | formatDate('dddd, MMMM D') }}</a> <span class="bar-group-name-labels">(${{ group.value | roundBillion }}bn in {% if group.country == 'china' %}Chinese imports from the US{% else %}US imports from China{% endif %}{% if group.name === '2018-03-23' or group.name === '2018-04-02' %}, tariffs in effect{% else %}, proposed tariffs{% endif %})</span>
+    <a href="#{{ group.name }}">{{ group.name | formatDate('dddd, MMMM D') }}</a>
   </div>
-  <div class="bar-wrapper">
-    <div class="bar-container__line"></div>
-    <span class="bar item__other" data-category="other" style="width: {{ 100 * (group.value / maxValue) }}%"></span>
-    <div class="bar-container">
-      {% for category, items in group.categories %}
-      <span class="bar item__{{category}}" data-category="{{ category }}" data-dollareffect="{{ items | getDollarSum }}" style="width: {{ 100 * (items | getDollarSum / maxValue) }}%"></span>
-      {% endfor %}
+  <div class="bar-wrapper-outer">
+    <div class="bar-wrapper">
+      <div class="bar-container__line"></div>
+      <span class="bar item__other" data-category="other" style="width: {{ 100 * (group.value / maxValue) }}%"></span>
+      <div class="bar-container">
+        {% for category, items in group.categories %}
+        <span class="bar item__{{category}}" data-category="{{ category }}" data-dollareffect="{{ items | getDollarSum }}" style="width: {{ 100 * (items | getDollarSum / maxValue) }}%"></span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="bar-group-metadata">
+      <div class="bar-group-metadata__value">
+        ${{ group.value | roundBillion }}bn
+        <span class="bar-group-metadata__proposal">{% if group.name !== '2018-03-23' and group.name !== '2018-04-02' %}(proposed){% endif %}</span>
+      </div>
+      {% if group.country == 'china' %}
+      <span class="summary-item item__us">
+        <span class="key__bullet"></span>
+      </span>
+      {% else %}
+      <span class="summary-item item__chinese">
+        <span class="key__bullet"></span>
+      </span>
+      {% endif %}
     </div>
   </div>
-{% endfor %}
+  {% endfor %}
 </div>
 
 {% for row in timeline %}
