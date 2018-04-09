@@ -9,29 +9,8 @@ export default async (environment = 'development') => {
   const d = await article(environment);
   const flags = await getFlags(environment);
   const onwardJourney = await getOnwardJourney(environment);
-  /*
-  An experimental demo that gets content from the API
-  and overwrites some model values. This requires the Link File
-  to have been published. Also next-es-interface.ft.com probably
-  isn't a reliable source. Also this has no way to prevent development
-  values being seen in productions... use with care.
 
-  try {
-    const a = (await axios(`https://next-es-interface.ft.com/content/${d.id}`)).data;
-    d.headline = a.title;
-    d.byline = a.byline;
-    d.summary = a.summaries[0];
-    d.title = d.title || a.title;
-    d.description = d.description || a.summaries[1] || a.summaries[0];
-    d.publishedDate = new Date(a.publishedDate);
-    f.comments = a.comments;
-  } catch (e) {
-    console.log('Error getting content from content API');
-  }
-
-  */
-
-  const data = await bertha.get('1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo', ['items', 'content|object', 'totalvalues|object'], { republish: true });
+  const data = await bertha.get('1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo', ['items', 'content|object', 'timeline'], { republish: true });
   const groups = _.sortBy(_.uniq(_.pluck(data.items, 'category')));
 
   const itemsWithoutValues = data.items.filter(a => a.dollareffect === null);
@@ -39,15 +18,17 @@ export default async (environment = 'development') => {
   const itemsSortedByDollarEffect = itemsWithValues.concat(itemsWithoutValues);
   const groupedItems = _.groupBy(itemsSortedByDollarEffect, item => item.date);
 
+  const timeline = data.timeline;
+  const maxValue = _.pluck(timeline, 'value').reduce((a, b) => Math.max(a, b));
+
   const categorySummary = _.map(groupedItems, (dateGroup) => {
     return {
       dateGroup: dateGroup[0].date,
       country: dateGroup[0].country,
       categories: _.groupBy(_.sortBy(dateGroup, a => a.category), 'category'),
+      totalValue: timeline.filter(a => a.name === dateGroup[0].date)[0].value,
     };
   });
-  const totalValues = data.totalvalues;
-  const maxValue = _.values(data.totalvalues).reduce((a, b) => Math.max(a, b));
 
   return {
     ...d,
@@ -56,7 +37,7 @@ export default async (environment = 'development') => {
     groupedItems,
     categorySummary,
     maxValue,
-    totalValues,
+    timeline,
     flags,
     onwardJourney,
   };

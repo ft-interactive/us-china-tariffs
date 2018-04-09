@@ -22,26 +22,21 @@
     <span class="bar item__other" data-category="other" style="width: 100%;"></span>
   </div>
   {% for group in categorySummary %}
-  <div class="bar-group-name"><a href="#{{ group.dateGroup }}">{{ group.dateGroup | formatDate('dddd, MMMM D') }}</a> (${{ totalValues[group.dateGroup] | roundBillion }}bn in {% if group.country == 'China' %}Chinese imports from the US{% else %}US imports from China{% endif %}{% if group.dateGroup === '2018-03-23' or group.dateGroup === '2018-04-02' %}, tariffs in effect{% else %}, proposed tariffs{% endif %})</div>
+  <div class="bar-group-name"><a href="#{{ group.dateGroup }}">{{ group.dateGroup | formatDate('dddd, MMMM D') }}</a> (${{ group.totalValue | roundBillion }}bn in {% if group.country == 'China' %}Chinese imports from the US{% else %}US imports from China{% endif %}{% if group.dateGroup === '2018-03-23' or group.dateGroup === '2018-04-02' %}, tariffs in effect{% else %}, proposed tariffs{% endif %})</div>
   <div class="bar-container">
     {% for category, items in group.categories %}
     <span class="bar item__{{category}}" data-category="{{ category }}" data-dollareffect="{{ items | getDollarSum }}" style="width: {{ 100 * (items | getDollarSum / maxValue) }}%"></span>
     {% endfor %}
-    <span class="bar item__other" data-category="other" style="width: {{ 100 * (totalValues[group.dateGroup] / maxValue) }}%"></span>
+    <span class="bar item__other" data-category="other" style="width: {{ 100 * (group.totalValue / maxValue) }}%"></span>
   </div>
 {% endfor %}
 </div>
 
-<h2 id="2018-04-05">Thursday, April 5, 2018</h2>
-
-<p>President Donald Trump issues a statement saying that "in light of China’s unfair retaliation," he has instructed the US trade representative to "consider whether $100bn of additional tariffs would be appropriate", and to identify which products should be affected.</p>
-
-
-{% for group, items in groupedItems %}
-  <h2 id="{{ group }}">{{ group | formatDate('dddd, MMMM D, YYYY') }}</h2>
-  <p>{{ data.content[group] }}</p>
+{% for row in timeline %}
+  <h2 id="{{ row.name }}">{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
+  <p>{{ row.blurb }}</p>
   <ol>
-    {% for item in items %}
+    {% for item in groupedItems[row.name] %}
     <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
       <span class="item__bullet">•</span>
       <span class="item__name">{{ item.englishgoogletranslation }}</span>
