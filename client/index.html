@@ -7,29 +7,68 @@
 {{ data.content.intro }}
 {% endmarkdown %}
 
-<div id="key">
-  {% for group in groups %}
-    <span class="summary-item item__{{ group }}">
-      <span class="item__bullet">•</span>
-      <span class="item__name">{% if group === 'industrials' %}Industrial products/technology{% else %}{{ group | capitalize }}{% endif %}</span>
-    </span>
-  {% endfor %}
+<div id="key-container">
+  <div>KEY</div>
+  <div id="key">
+    <div class="key-row">
+      {% for group in groups %}
+        <span class="summary-item item__{{ group }}">
+          <span class="key__bullet"></span>
+          <span class="item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
+        </span>
+      {% endfor %}
+      <span class="summary-item item__others">
+        <span class="key__bullet"></span>
+        <span class="item__name">Uncategorised</span>
+      </span>
+    </div>
+    <div class="key-row">
+      <span class="summary-item item__chinese">
+        <span class="key__bullet"></span>
+        <span class="item__name">Chinese tariffs on US goods</span>
+      </span>
+      <span class="summary-item item__us">
+        <span class="key__bullet"></span>
+        <span class="item__name">US tariffs on Chinese goods</span>
+      </span>
+    </div>
+  </div>
 </div>
 
 <div id="summary-graphic">
-  <div class="bar-group-name"><a href="#2018-04-05"> {{ "2018-04-05" | formatDate('dddd, MMMM D') }}</a> ($100bn in US imports from China, proposed tariffs)</div>
-  <div class="bar-container">
-    <span class="bar item__other" data-category="other" style="width: 100%;"></span>
-  </div>
+  <div id="summary-graphic__label">Total tariffs</div>
+
   {% for group in categorySummary %}
-  <div class="bar-group-name"><a href="#{{ group.dateGroup }}">{{ group.dateGroup | formatDate('dddd, MMMM D') }}</a> (${{ group.totalValue | roundBillion }}bn in {% if group.country == 'China' %}Chinese imports from the US{% else %}US imports from China{% endif %}{% if group.dateGroup === '2018-03-23' or group.dateGroup === '2018-04-02' %}, tariffs in effect{% else %}, proposed tariffs{% endif %})</div>
-  <div class="bar-container">
-    {% for category, items in group.categories %}
-    <span class="bar item__{{category}}" data-category="{{ category }}" data-dollareffect="{{ items | getDollarSum }}" style="width: {{ 100 * (items | getDollarSum / maxValue) }}%"></span>
-    {% endfor %}
-    <span class="bar item__other" data-category="other" style="width: {{ 100 * (group.totalValue / maxValue) }}%"></span>
+  <div class="bar-group-name">
+    <a href="#{{ group.name }}">{{ group.name | formatDate('dddd, MMMM D') }}</a>
   </div>
-{% endfor %}
+  <div class="bar-wrapper-outer">
+    <div class="bar-wrapper">
+      <div class="bar-container__line"></div>
+      <span class="bar item__other" data-category="other" style="width: {{ 100 * (group.value / maxValue) }}%"></span>
+      <div class="bar-container">
+        {% for category, items in group.categories %}
+        <span class="bar item__{{category}}" data-category="{{ category }}" data-dollareffect="{{ items | getDollarSum }}" style="width: {{ 100 * (items | getDollarSum / maxValue) }}%"></span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="bar-group-metadata">
+      <div class="bar-group-metadata__value">
+        ${{ group.value | roundBillion }}bn
+        <span class="bar-group-metadata__proposal">{% if group.name !== '2018-03-23' and group.name !== '2018-04-02' %}(proposed){% endif %}</span>
+      </div>
+      {% if group.country == 'us' %}
+      <span class="summary-item item__us">
+        <span class="key__bullet"></span>
+      </span>
+      {% else %}
+      <span class="summary-item item__chinese">
+        <span class="key__bullet"></span>
+      </span>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
 </div>
 
 {% for row in timeline %}

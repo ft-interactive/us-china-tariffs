@@ -11,10 +11,10 @@ export default (environment = 'development') => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date('2018-04-06T02:00:36.801Z'),
 
-  headline: 'The looming US-China trade war',
+  headline: 'What’s at stake in the looming US-China trade war: the full list',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Explore a comprehensive list of the more than 1,500 items threatened by new tariffs',
+  summary: 'Explore the more than 1,500 items threatened by new tariffs',
 
   topic: {
     name: 'Trade disputes',
@@ -50,7 +50,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
   title: '',
 
   // meta data
-  description: 'Explore a comprehensive list of the more than 1,500 items threatened by new tariffs',
+  description: 'Explore the more than 1,500 items threatened by new tariffs',
 
   /*
   TODO: Select Twitter card type -
