@@ -134,7 +134,12 @@ span.item__name {
   .bar-group-name {
     margin-top: 1em;
     margin-bottom: 10px;
+
+    .bar-group-name-labels {
+      margin-left: 5px;
+    }
   }
+
 
   .bar-wrapper {
     position: relative;
