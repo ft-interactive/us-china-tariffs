@@ -96,6 +96,11 @@ span.item__name {
           border-radius: 50%;
           display: inline-block;
           vertical-align: middle;
+
+          @include oGridRespondTo($until: S) {
+            width: 12px;
+            height: 12px;
+          }
         }
 
         .item__name {
