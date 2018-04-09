@@ -35,6 +35,7 @@
 {% for row in timeline %}
   <h2 id="{{ row.name }}">{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
   <p>{{ row.blurb }}</p>
+  {% if groupedItems[row.name] | length > 0 %}
   <ol>
     {% for item in groupedItems[row.name] %}
     <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
@@ -43,6 +44,7 @@
     </li>
     {% endfor %}
   </ol>
+  {% endif %}
 {% endfor %}
 
 <div id="sources">
