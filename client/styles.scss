@@ -8,13 +8,6 @@ span.item__name {
   margin-left: 15px;
 }
 
-.bar.item__other {
-  position: absolute;
-  left: -1px;
-  top: -1px;
-  border: 1px solid black;
-}
-
 .bar.item__agriculture {
   background: #9dbf57;
 }
@@ -30,6 +23,13 @@ span.item__name {
 .bar.item__transport {
   background: #0f5499;
 }
+
+.bar.item__other {
+  position: absolute;
+  background: #c2b7af;
+  height: 20px;
+}
+
 
 
 
@@ -125,19 +125,32 @@ span.item__name {
 
   .bar-group-name {
     margin-top: 1em;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 
-  .bar-container {
-    width: 100%;
-    height: 20px;
+  .bar-wrapper {
     position: relative;
 
-    .bar {
-      float: left;
-      height: 20px;
+    .bar-container__line {
+      position: absolute;
+      border-bottom: 1px solid oColorsGetPaletteColor('black-10');
+      width: 100%;
+      height: 10px;
+    }
+
+    .bar-container {
+      width: 100%;
+      height: 24px;
+      position: relative;
+
+      .bar {
+        float: left;
+        height: 20px;
+        z-index: 2;
+      }
     }
   }
+
 }
 
 :root .o-typography-wrapper ol {
