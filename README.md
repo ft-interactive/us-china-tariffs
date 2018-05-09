@@ -73,8 +73,9 @@ Whenever you add _any_ repository to the [ft-interactive](https://github.com/ft-
 How does Starter Kit come into this? Starter Kit includes a [`circle.yml`](circle.yml) file that instructs CircleCI to run `npm run deploy` after any successful builds. This means that all you have to do is commit a change to your project, and push the commit to GitHub (or just make the change directly on the GitHub website), and it should get deployed within a few minutes. (The deploy script automatically decides what path to upload files to, based on the name of the repo on GitHub.) This process is called **continuous integration**.
 
 ## Licence
-
 This software is published by the Financial Times under the [MIT licence](http://opensource.org/licenses/MIT).
+
+Please note the MIT licence includes only the software, and does not cover any FT content made available using the software, which is copyright &copy; The Financial Times Limited, all rights reserved. For more information about re-publishing FT content, please contact our [syndication department](http://syndication.ft.com/).
 
 <!-- badge URLs -->
 [circle-url]: https://circleci.com/gh/ft-interactive/starter-kit
