@@ -55,7 +55,7 @@
     <div class="bar-group-metadata">
       <div class="bar-group-metadata__value">
         ${{ group.value | roundBillion }}bn
-        <span class="bar-group-metadata__proposal">{% if group.name !== '2018-03-23' and group.name !== '2018-04-02' and group.name !== '2018-04-17' %}(proposed){% endif %}</span>
+        <span class="bar-group-metadata__proposal">{% if group.proposed %}(proposed){% endif %}</span>
       </div>
       {% if group.country == 'us' %}
       <span class="summary-item item__us">
