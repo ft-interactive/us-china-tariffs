@@ -14,7 +14,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
   headline: 'What’s at stake in the looming US-China trade war: the full list',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Explore the more than 1,500 items threatened by new tariffs',
+  summary: 'Explore the nearly 3,000 items threatened by new tariffs',
 
   topic: {
     name: 'Trade disputes',
@@ -44,13 +44,15 @@ export default (environment = 'development') => ({ // eslint-disable-line
     { name: 'Joanna S Kao', url: 'https://www.ft.com/joanna-s-kao' },
     { name: 'Ed Crooks', url: 'https://www.ft.com/stream/42dab372-28d1-364c-b4f2-fc7c4a07e906' },
     { name: 'Jane Pong', url: 'https://www.ft.com/jane-pong' },
+    { name: 'Robin Kwong', url: 'https://www.ft.com/robin-kwong' },
+    { name: 'Tom Hancock', url: 'https://www.ft.com/stream/95f0a07f-a3b1-32ff-ba04-45ad17ad1159' }
   ],
 
   // Appears in the HTML <title>
   title: '',
 
   // meta data
-  description: 'Explore the more than 1,500 items threatened by new tariffs',
+  description: 'Explore the nearly 3,000 items threatened by new tariffs',
 
   /*
   TODO: Select Twitter card type -
