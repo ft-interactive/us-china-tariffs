@@ -74,11 +74,6 @@ span.item__name {
   color: #0f5499;
 }
 
-.bar-group-metadata .summary-item span.key__bullet {
-  position: relative;
-  top: 0.75em;
-}
-
 #key-container {
   #key {
     background: oColorsGetPaletteColor('black-5');
@@ -132,7 +127,6 @@ span.item__name {
   .bar-group-name {
     width: 100%;
     margin-top: 1em;
-    margin-left: 10px;
     margin-bottom: 10px;
   }
 
