@@ -11,7 +11,7 @@ export default (environment = 'development') => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'What’s at stake in the looming US-China trade war: the full list',
+  headline: 'What’s at stake in US-China trade war: the full list',
 
   // summary === standfirst (Summary is what the content API calls it)
   summary: 'Explore the more than 1,500 items threatened by new tariffs',
