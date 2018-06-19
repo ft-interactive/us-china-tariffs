@@ -13,11 +13,11 @@ span.item__name {
 }
 
 .bar.item__industrials {
-  background: #EB5E8D;
+  background: #eb5e8d;
 }
 
 .bar.item__energy {
-  background: #70DCE6;
+  background: #70dce6;
 }
 
 .bar.item__transport {
@@ -30,19 +30,16 @@ span.item__name {
   height: 20px;
 }
 
-
-
-
 .item__agriculture span.key__bullet {
   background: #9dbf57;
 }
 
 .item__industrials span.key__bullet {
-  background: #EB5E8D;
+  background: #eb5e8d;
 }
 
 .item__energy span.key__bullet {
-  background: #70DCE6;
+  background: #70dce6;
 }
 
 .item__transport span.key__bullet {
@@ -61,25 +58,26 @@ span.item__name {
   background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691501-bz2w0.svg);
 }
 
-
-
-
 .item__agriculture span.item__bullet {
   color: #9dbf57;
 }
 
 .item__industrials span.item__bullet {
-  color: #EB5E8D;
+  color: #eb5e8d;
 }
 
 .item__energy span.item__bullet {
-  color: #70DCE6;
+  color: #70dce6;
 }
 
 .item__transport span.item__bullet {
   color: #0f5499;
 }
 
+.bar-group-metadata .summary-item span.key__bullet {
+  position: relative;
+  top: 0.75em;
+}
 
 #key-container {
   #key {
@@ -123,7 +121,7 @@ span.item__name {
   margin: 2em 0;
 
   #summary-graphic__label {
-    text-align: right;
+    text-align: left;
     text-transform: uppercase;
     width: 100%;
     padding-bottom: 5px;
@@ -134,6 +132,7 @@ span.item__name {
   .bar-group-name {
     width: 100%;
     margin-top: 1em;
+    margin-left: 10px;
     margin-bottom: 10px;
   }
 
@@ -165,7 +164,6 @@ span.item__name {
     }
 
     .bar-group-metadata {
-      width: 150px;
       display: flex;
       justify-content: flex-end;
       color: oColorsGetPaletteColor('black-60');
