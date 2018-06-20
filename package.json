@@ -40,6 +40,8 @@
     "chai": "^4.1.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
+    "d3-array": "^1.2.1",
+    "d3-scale": "^2.1.0",
     "d3-time-format": "^2.0.5",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",

@@ -1,5 +1,8 @@
 import * as bertha from 'bertha-client';
 import _ from 'underscore';
+import * as d3Array from 'd3-array';
+import * as d3TimeFormat from 'd3-time-format';
+import * as d3Scale from 'd3-scale';
 
 import article from './article';
 import getFlags from './flags';
@@ -32,6 +35,19 @@ export default async (environment = 'development') => {
     ...date,
     categories: _.groupBy(_.sortBy(groupedItems[date.name], a => a.category), 'category'),
   }));
+
+  const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
+  const max = d3Array.max(categorySummary, x => parseTime(x.name));
+  const min = d3Array.min(categorySummary, x => parseTime(x.name));
+
+  const timeScale = d3Scale
+    .scaleTime()
+    .domain([min, max])
+    .range([0, 100]);
+
+  categorySummary.forEach((x) => {
+    x.time = timeScale(parseTime(x.name));
+  });
 
   const totalTradeAffected = categorySummary.reduce((a, b) => (b.display ? a + b.value : a), 0);
 

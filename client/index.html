@@ -73,6 +73,21 @@
   {% endfor %}
 </div>
 
+<div id="timeline-wrapper" class="o-grid-container">
+  <div id="timeline-container" class="o-grid-row">
+    <div id="timeline">
+      {% for group in categorySummary %}
+        <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" style="left: {{ (group.time) }}%" data-card-id={{ loop.index0 }}>
+          <div class="timeline__circle__text">
+            <div class="timeline__circle__text-date">{{ group.name | formatDate('MMMM D') }} – ${{ group.value | roundBillion }}bn</div>
+          </div>
+        </div>
+      {% endfor %}
+      <div id="timeline__line"></div>
+    </div>
+  </div>
+</div>
+
 {% for row in timeline %}
   <h2 id="{{ row.name }}">{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
   <p>{{ row.blurb }}</p>
