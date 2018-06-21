@@ -12,8 +12,10 @@ window.addEventListener('scroll', () => {
 
   if (window.scrollY - window.innerHeight > containerPosition) {
     document.querySelector('#timeline-container').classList.add('tacked');
+    document.querySelector('.timeline-space').style.height = '84px';
   } else {
     document.querySelector('#timeline-container').classList.remove('tacked');
+    document.querySelector('.timeline-space').style.height = '0px';
   }
 });
 
@@ -26,9 +28,6 @@ Array.from(timelineDots).forEach((timelineDot) => {
       84 -
       20;
 
-    console.log(yPos);
     window.scrollTo(0, yPos);
-
-    const textDate = timelineDot.querySelector('.timeline__circle__text-date').innerText;
   });
 });

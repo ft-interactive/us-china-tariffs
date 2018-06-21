@@ -88,19 +88,23 @@
   </div>
 </div>
 
+<div class="timeline-space"></div>
+
 {% for row in timeline %}
-  <h2 id="tariffs-{{ row.name }}">{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
-  <p>{{ row.blurb }}</p>
-  {% if groupedItems[row.name] | length > 0 %}
-  <ol>
-    {% for item in groupedItems[row.name] %}
-    <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
-      <span class="item__bullet">•</span>
-      <span class="item__name">{{ item.englishgoogletranslation }}</span>
-    </li>
-    {% endfor %}
-  </ol>
-  {% endif %}
+  <div class="date-wrapper" id="tariffs-{{ row.name }}">
+    <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
+    <p>{{ row.blurb }}</p>
+    {% if groupedItems[row.name] | length > 0 %}
+    <ol>
+      {% for item in groupedItems[row.name] %}
+      <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
+        <span class="item__bullet">•</span>
+        <span class="item__name">{{ item.englishgoogletranslation }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+    {% endif %}
+  </div>
 {% endfor %}
 
 <div id="sources">
