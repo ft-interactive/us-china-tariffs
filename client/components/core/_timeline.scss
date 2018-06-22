@@ -4,6 +4,69 @@
   margin-top: 5em;
   margin-bottom: 5em;
 
+  .timeline-legend {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+
+    @include oGridRespondTo($until: S) {
+      width: 100%;
+      margin-bottom: 3em;
+    }
+  }
+
+  .timeline-legend.hide {
+    display: none;
+  }
+
+  .timeline-legend .legend-country {
+    text-align: right;
+  }
+
+  .timeline-legend .key-items {
+    padding-left: 0;
+  }
+
+  .timeline-legend .summary-item {
+    position: relative;
+    margin-right: 10px;
+    white-space: nowrap;
+    display: inline-block;
+    margin-bottom: 5px;
+
+    .key__bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+
+      @include oGridRespondTo($until: S) {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    &.item__us .key__bullet,
+    &.item__chinese .key__bullet {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      top: -10px;
+      left: 20px;
+
+      @include oGridRespondTo($until: S) {
+        left: -10px;
+        top: 0;
+      }
+    }
+
+    .legend-item__name {
+      margin-left: 5px;
+    }
+  }
+
   #timeline-container {
     position: relative;
     width: 100%;
@@ -17,11 +80,10 @@
     top: 0;
     left: 0;
     background: #fff1e5;
-    padding: 0.8em;
     overflow: hidden;
     z-index: 5;
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
-    padding: 2.5em 40px 2.5em;
+    padding: 1.5em 40px 2.5em;
     margin: 0;
   }
 
@@ -57,7 +119,7 @@
           text-align: center;
           width: 10em;
           margin-left: -5em;
-          margin-top: 1.2em;
+          margin-top: 1em;
           color: #999189;
 
           &-date {
@@ -79,7 +141,7 @@
           text-align: center;
           width: 10em;
           margin-left: -5em;
-          margin-top: -1.8em;
+          margin-top: -1.5em;
           color: black;
 
           &-date {

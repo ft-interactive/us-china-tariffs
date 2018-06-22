@@ -75,6 +75,27 @@
 
 <div id="timeline-wrapper" class="o-grid-container">
   <div id="timeline-container" class="o-grid-row">
+    <div class="timeline-legend hide">
+      <div class="key-items" data-o-grid-colspan="11">
+        <div class="key-row">
+          {% for group in groups %}
+            <div class="summary-item item__{{ group }}">
+              <span class="key__bullet"></span>
+              <span class="legend-item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
+            </div>
+          {% endfor %}
+          <div class="summary-item item__others">
+            <span class="key__bullet"></span>
+            <span class="legend-item__name">Uncategorised</span>
+          </div>
+        </div>
+      </div>
+      <div class="legend-country" data-o-grid-colspan="1">
+        <span class="summary-item item__us">
+          <span class="key__bullet"></span>
+        </span>
+      </div>
+    </div>
     <div id="timeline">
       {% for group in categorySummary %}
         <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" style="left: {{ (group.time) }}%" data-card-id={{ group.name }}>
@@ -91,7 +112,7 @@
 <div class="timeline-space"></div>
 
 {% for row in timeline %}
-  <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }}>
+  <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }} data-country-name={{ row.country }}>
     <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
     <p>{{ row.blurb }}</p>
     {% if groupedItems[row.name] | length > 0 %}
