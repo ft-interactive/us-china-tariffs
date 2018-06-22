@@ -91,7 +91,7 @@
 <div class="timeline-space"></div>
 
 {% for row in timeline %}
-  <div class="date-wrapper" id="tariffs-{{ row.name }}">
+  <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }}>
     <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
     <p>{{ row.blurb }}</p>
     {% if groupedItems[row.name] | length > 0 %}
