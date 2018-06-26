@@ -141,25 +141,20 @@
         bottom: 6.5px;
       }
 
-      &:hover {
-        .timeline__circle__text {
-          color: #33302e;
-          display: block;
-          position: relative;
-          bottom: 32px;
-          width: 200px;
-          right: 193px;
-          text-align: right;
-        }
-
-        .timeline__line-date {
-          display: none;
-        }
-      }
-
       .timeline__circle__text {
         display: none;
       }
+    }
+
+    .timeline__line-text-left,
+    .timeline__line-text-right {
+      display: inline;
+    }
+
+    .timeline__line-text-right {
+      float: right;
+      color: #66605c;
+      display: none;
     }
 
     .timeline__line-date {

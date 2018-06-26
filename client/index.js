@@ -1,9 +1,14 @@
 import './styles.scss';
 import scrollama from 'scrollama';
+import * as d3TimeFormat from 'd3-time-format';
 
 const timelineDots = document.querySelectorAll('.timeline__circle');
 
 const offset = 140;
+
+const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
+const getMonth = d3TimeFormat.timeFormat('%B');
+const getDay = d3TimeFormat.timeFormat('%e');
 
 // Trigger sticky header
 window.addEventListener('scroll', () => {
@@ -13,16 +18,12 @@ window.addEventListener('scroll', () => {
 
   const containerPosition = document.querySelector('#timeline-wrapper').offsetTop + containerHeight;
 
-  if (window.scrollY - window.innerHeight > containerPosition) {
+  if (window.scrollY > containerPosition) {
     // Add sticky header on scroll
     document.querySelector('#timeline-container').classList.add('tacked');
-    document.querySelector('.timeline-legend').classList.remove('hide');
-    document.querySelector('.timeline-space').style.height = '84px';
   } else {
     // Remove sticky header
     document.querySelector('#timeline-container').classList.remove('tacked');
-    document.querySelector('.timeline-legend').classList.add('hide');
-    document.querySelector('.timeline-space').style.height = '0px';
   }
 });
 
@@ -35,8 +36,22 @@ Array.from(timelineDots).forEach((timelineDot) => {
       window.scrollY -
       offset -
       20;
+  });
 
-    window.scrollTo(0, yPos);
+  timelineDot.addEventListener('mouseover', () => {
+    const id = timelineDot.dataset.cardId;
+    const textRight = document.querySelector('.timeline__line-text-right');
+    textRight.style.display = 'inline';
+
+    const time = parseTime(id);
+    const displayString = `${getMonth(time)} ${getDay(time).trim()}`;
+
+    textRight.innerText = displayString;
+  });
+
+  timelineDot.addEventListener('mouseout', () => {
+    const textRight = document.querySelector('.timeline__line-text-right');
+    textRight.style.display = 'none';
   });
 });
 
@@ -56,14 +71,12 @@ const scroller = scrollama();
 scroller
   .setup({
     step: '.date-step',
-    offset: 0.2,
+    offset: 0.175,
     progress: true,
   })
   .onStepEnter((trigger) => {
     // If page refreshed, add sticky header
     document.querySelector('#timeline-container').classList.add('tacked');
-    document.querySelector('.timeline-legend').classList.remove('hide');
-    document.querySelector('.timeline-space').style.height = '84px';
 
     const id = trigger.element.dataset.cardId;
     const countryName = trigger.element.dataset.countryName === 'us' ? 'us' : 'chinese';
@@ -73,16 +86,18 @@ scroller
     circle.classList.add('selected');
     clearCirclesExcept(id);
 
-    // Update country icon
-    const countryIcon = document.querySelector('.legend-country .summary-item');
-    countryIcon.classList.remove('item__us');
-    countryIcon.classList.remove('item__china');
-    countryIcon.classList.add(`item__${countryName}`);
-
     // Get current date, previous id, and next id
     const currentIndex = idList.indexOf(id);
     const prevIndex = currentIndex === 0 ? 0 : currentIndex - 1;
     const nextIndex = currentIndex < idList.length - 1 ? currentIndex + 1 : currentIndex;
+
+    // Set data
+    const time = parseTime(id);
+    const timeString = `${getMonth(time)} ${getDay(time).trim()}`;
+    const value = trigger.element.dataset.cardValue;
+
+    document.querySelector('.timeline__line-date').innerText = timeString;
+    document.querySelector('.timeline__line-value').innerText = `$${value}bn`;
   })
   .onStepExit((trigger) => {
     const id = trigger.element.dataset.cardId;
@@ -90,7 +105,7 @@ scroller
     if (
       trigger.index !== 0 &&
       trigger.direction !== 'up' &&
-      (trigger.index !== circles.length - 1 && trigger.direction !== 'down')
+      (trigger.index !== timelineDots.length - 1 && trigger.direction !== 'down')
     ) {
       // Remove selected timeline circled
       circle.classList.remove('selected');
