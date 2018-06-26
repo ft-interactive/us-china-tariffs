@@ -17,10 +17,12 @@ window.addEventListener('scroll', () => {
     // Add sticky header on scroll
     document.querySelector('#timeline-container').classList.add('tacked');
     document.querySelector('.timeline-legend').classList.remove('hide');
+    document.querySelector('.timeline-space').style.height = '84px';
   } else {
     // Remove sticky header
     document.querySelector('#timeline-container').classList.remove('tacked');
     document.querySelector('.timeline-legend').classList.add('hide');
+    document.querySelector('.timeline-space').style.height = '0px';
   }
 });
 
@@ -61,6 +63,7 @@ scroller
     // If page refreshed, add sticky header
     document.querySelector('#timeline-container').classList.add('tacked');
     document.querySelector('.timeline-legend').classList.remove('hide');
+    document.querySelector('.timeline-space').style.height = '84px';
 
     const id = trigger.element.dataset.cardId;
     const countryName = trigger.element.dataset.countryName === 'us' ? 'us' : 'chinese';
