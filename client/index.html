@@ -94,11 +94,11 @@
       <div class="timeline__line-container" data-o-grid-colspan="8">
         <div class="timeline__line-text">
           <span class="timeline__line-date">June 16</span>
-          <span class="timeline__line-value">50bn</span>
+          <span class="timeline__line-value">– $50bn</span>
         </div>
         <div class="timeline__line">
           {% for group in categorySummary %}
-            <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" style="left: {{ (group.time) }}%" data-card-id={{ group.name }}>
+            <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" data-card-id={{ group.name }}>
               <div class="timeline__circle__text">
                 <div class="timeline__circle__text-date">{{ group.name | formatDate('MMMM D') }} – ${{ group.value | roundBillion }}bn</div>
               </div>
@@ -108,10 +108,10 @@
       </div>
       <div class="timeline__buttons" data-o-grid-colspan="4">
         <div class="timeline__left-button">
-          <i class="o-icons-icon o-icons-icon--arrow-left"></i>
+          <i class="icon-arrow-left"></i>
         </div>
         <div class="timeline__right-button">
-          <i class="o-icons-icon o-icons-icon--arrow-right"></i>
+          <i class="icon-arrow-right"></i>
         </div>
       </div>
     </div>

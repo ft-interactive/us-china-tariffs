@@ -46,8 +46,7 @@ export default async (environment = 'development') => {
     .domain([min, max])
     .range([0, 100]);
   categorySummary.forEach((x, i) => {
-    // x.time = timeScale(parseTime(x.name));
-    x.time = i === 0 ? 0 : i / (categorySummary.length - 1) * 100;
+    x.time = timeScale(parseTime(x.name));
   });
   timelineSpacing(categorySummary, 3, 1, [0, 100]);
 

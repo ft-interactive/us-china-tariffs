@@ -1,4 +1,14 @@
 @import 'o-grid/main';
+@import 'o-icons/main';
+@import 'o-colors/main';
+
+.icon-arrow-left {
+  @include oIconsGetIcon('arrow-left', #ffffff, 40);
+}
+
+.icon-arrow-right {
+  @include oIconsGetIcon('arrow-right', #ffffff, 40);
+}
 
 #timeline-wrapper {
   #timeline-container {
@@ -19,96 +29,141 @@
     margin: 0;
   }
 
-  @include oGridRespondTo($until: S) {
-    .timeline__country-banner {
-      width: 100%;
-      text-align: center;
-      padding: 5px 0;
-      font-size: 24px;
-      font-weight: 500;
-    }
+  .timeline__country-banner {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
 
-    .timeline__country-banner.timeline__country-banner--china {
-      background-color: #cc0000;
-      color: #ffffff;
-    }
+  .timeline__country-banner.timeline__country-banner--china {
+    background-color: #cc0000;
+    color: #ffffff;
+  }
 
-    .timeline__legend {
-      width: 100%;
-      padding-top: 12px;
-      padding-bottom: 10px;
-      padding-left: 1em;
-    }
+  .timeline__legend {
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    padding-left: 1em;
+  }
 
-    .timeline__legend-item {
-      position: relative;
-      white-space: nowrap;
+  .timeline__legend-item {
+    position: relative;
+    white-space: nowrap;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    margin-right: 10px;
+
+    .key__bullet {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
       display: inline-block;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-      margin-right: 10px;
+      vertical-align: middle;
+    }
 
-      .key__bullet {
+    .item__name {
+      margin-left: 5px;
+      position: relative;
+      top: 1px;
+    }
+  }
+
+  .timeline__navigation {
+    width: 100%;
+    margin: 0;
+  }
+
+  .timeline__line-container {
+    background-color: #e6d9ce;
+  }
+
+  .timeline__buttons {
+    color: #ffffff;
+
+    i {
+      width: 40px;
+      height: 40px;
+      margin-top: 12px;
+    }
+
+    display: flex;
+    padding: 0;
+
+    .timeline__left-button {
+      margin-right: 2px;
+    }
+
+    .timeline__left-button,
+    .timeline__right-button {
+      flex: auto;
+      background-color: #46a5b2;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+
+  .timeline__line-container {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+
+    .timeline__line {
+      width: 100%;
+      height: 2px;
+      background: #b9afa5;
+      margin: auto;
+      margin-top: 1em;
+      margin-bottom: 1em;
+
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .timeline__circle {
+      position: relative;
+      bottom: 4px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: #b9afa5;
+      border: 2px solid #e6d9ce;
+
+      &.selected {
+        background: #46a5b2;
         width: 12px;
         height: 12px;
-        border-radius: 50%;
-        display: inline-block;
-        vertical-align: middle;
+        bottom: 6.5px;
       }
 
-      .item__name {
-        margin-left: 5px;
-        position: relative;
-        top: 1px;
-      }
-    }
-
-    .timeline__navigation {
-      width: 100%;
-      margin: 0;
-    }
-
-    .timeline__line-container {
-      background-color: #e6d9ce;
-    }
-
-    .timeline__buttons {
-      background-color: #46a5b2;
-
-      i {
-        width: 40px;
-        height: 40px;
-        display: inline;
-      }
-    }
-
-    .timeline__line-container {
-      padding-left: 1em;
-      padding-right: 1em;
-
-      .timeline__line {
-        width: 90%;
-        height: 3px;
-        background: #b9afa5;
-        margin: auto;
-        margin-top: 1em;
-        margin-bottom: 1em;
-      }
-
-      .timeline__circle {
-        // position: absolute;
-        top: -5.5px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        cursor: pointer;
-        background: #ffffff;
-        border: 2px solid #999189;
-
+      &:hover {
         .timeline__circle__text {
+          color: #33302e;
+          display: block;
+          position: relative;
+          bottom: 32px;
+          width: 200px;
+          right: 193px;
+          text-align: right;
+        }
+
+        .timeline__line-date {
           display: none;
         }
       }
+
+      .timeline__circle__text {
+        display: none;
+      }
+    }
+
+    .timeline__line-date {
+      font-weight: 600;
     }
   }
 }
