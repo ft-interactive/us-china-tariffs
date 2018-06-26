@@ -37,6 +37,7 @@ export default async (environment = 'development') => {
     categories: _.groupBy(_.sortBy(groupedItems[date.name], a => a.category), 'category'),
   }));
 
+  // Calculate positions in the timeline
   const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
   const max = d3Array.max(categorySummary, x => parseTime(x.name));
   const min = d3Array.min(categorySummary, x => parseTime(x.name));
@@ -44,11 +45,13 @@ export default async (environment = 'development') => {
     .scaleTime()
     .domain([min, max])
     .range([0, 100]);
-  categorySummary.forEach((x) => {
-    x.time = timeScale(parseTime(x.name));
+  categorySummary.forEach((x, i) => {
+    // x.time = timeScale(parseTime(x.name));
+    x.time = i === 0 ? 0 : i / (categorySummary.length - 1) * 100;
   });
   timelineSpacing(categorySummary, 3, 1, [0, 100]);
 
+  // Calculate total trade affected by tariffs
   const totalTradeAffected = categorySummary.reduce((a, b) => (b.display ? a + b.value : a), 0);
 
   return {

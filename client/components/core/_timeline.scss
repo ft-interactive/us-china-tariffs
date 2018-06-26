@@ -1,72 +1,6 @@
 @import 'o-grid/main';
 
 #timeline-wrapper {
-  margin-top: 5em;
-  margin-bottom: 5em;
-
-  .timeline-legend {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2em;
-
-    @include oGridRespondTo($until: S) {
-      width: 100%;
-      margin-bottom: 3em;
-    }
-  }
-
-  .timeline-legend.hide {
-    display: none;
-  }
-
-  .timeline-legend .legend-country {
-    text-align: right;
-  }
-
-  .timeline-legend .key-items {
-    padding-left: 0;
-  }
-
-  .timeline-legend .summary-item {
-    position: relative;
-    margin-right: 10px;
-    white-space: nowrap;
-    display: inline-block;
-    margin-bottom: 5px;
-
-    .key__bullet {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: inline-block;
-      vertical-align: middle;
-
-      @include oGridRespondTo($until: S) {
-        width: 12px;
-        height: 12px;
-      }
-    }
-
-    &.item__us .key__bullet,
-    &.item__chinese .key__bullet {
-      width: 40px;
-      height: 40px;
-      position: relative;
-      top: -10px;
-      left: 20px;
-
-      @include oGridRespondTo($until: S) {
-        left: -10px;
-        top: 0;
-      }
-    }
-
-    .legend-item__name {
-      margin-left: 5px;
-    }
-  }
-
   #timeline-container {
     position: relative;
     width: 100%;
@@ -75,7 +9,6 @@
 
   #timeline-container.tacked {
     position: fixed;
-    width: 100%;
     box-sizing: border-box;
     top: 0;
     left: 0;
@@ -83,81 +16,281 @@
     overflow: hidden;
     z-index: 5;
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
-    padding: 1.5em 40px 2.5em;
     margin: 0;
-
-    @include oGridRespondTo($until: S) {
-      padding: 1.5em 20px 2.5em;
-    }
   }
 
-  #timeline {
-    width: 80%;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-
-    #timeline__line {
+  @include oGridRespondTo($until: S) {
+    .timeline__country-banner {
       width: 100%;
-      height: 4px;
-      background: #999189;
+      text-align: center;
+      padding: 5px 0;
+      font-size: 24px;
+      font-weight: 500;
     }
 
-    .timeline__circle {
-      position: absolute;
-      top: -5.5px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      background: #ffffff;
-      border: 2px solid #999189;
+    .timeline__country-banner.timeline__country-banner--china {
+      background-color: #cc0000;
+      color: #ffffff;
+    }
 
-      .timeline__circle__text {
-        display: none;
+    .timeline__legend {
+      width: 100%;
+      padding-top: 12px;
+      padding-bottom: 10px;
+      padding-left: 1em;
+    }
+
+    .timeline__legend-item {
+      position: relative;
+      white-space: nowrap;
+      display: inline-block;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      margin-right: 10px;
+
+      .key__bullet {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: middle;
       }
 
-      &:hover {
-        .timeline__circle__text {
-          display: block;
-          text-align: center;
-          width: 10em;
-          margin-left: -5em;
-          margin-top: 1em;
-          color: #999189;
+      .item__name {
+        margin-left: 5px;
+        position: relative;
+        top: 1px;
+      }
+    }
 
-          &-date {
-            font-weight: 600;
-          }
+    .timeline__navigation {
+      width: 100%;
+      margin: 0;
+    }
+
+    .timeline__line-container {
+      background-color: #e6d9ce;
+    }
+
+    .timeline__buttons {
+      background-color: #46a5b2;
+
+      i {
+        width: 40px;
+        height: 40px;
+        display: inline;
+      }
+    }
+
+    .timeline__line-container {
+      padding-left: 1em;
+      padding-right: 1em;
+
+      .timeline__line-text {
+        font-size: 1.2em;
+        margin-top: 8px;
+
+        .timeline__line-date {
+          font-weight: 600;
         }
       }
 
-      &.selected {
-        border: 3px solid #1c575c;
-        top: -6px;
+      .timeline__line {
+        width: 90%;
+        height: 3px;
+        background: #b9afa5;
+        margin: auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+
+      .timeline__circle {
+        position: relative;
+        top: 0;
         width: 10px;
         height: 10px;
-        background: #26747a;
-        z-index: 5;
+        border-radius: 50%;
+        cursor: pointer;
+        background: #ffffff;
+        border: 2px solid #999189;
 
         .timeline__circle__text {
-          display: block;
-          text-align: center;
-          width: 10em;
-          margin-left: -5em;
-          margin-top: -1.5em;
-          color: black;
+          display: none;
+        }
 
-          &-date {
-            font-weight: 600;
-          }
+        &.selected {
+          background: #46a5b2;
         }
       }
-    }
-
-    .timeline__circle__end {
-      background: #807973;
-      opacity: 1;
     }
   }
 }
+
+// #timeline-wrapper {
+//   margin-top: 5em;
+//   margin-bottom: 5em;
+//
+//   .timeline-legend {
+//     width: 80%;
+//     margin-left: auto;
+//     margin-right: auto;
+//     margin-bottom: 2em;
+//
+//     @include oGridRespondTo($until: S) {
+//       width: 100%;
+//       margin-bottom: 3em;
+//     }
+//   }
+//
+//   .timeline-legend.hide {
+//     display: none;
+//   }
+//
+//   .timeline-legend .legend-country {
+//     text-align: right;
+//   }
+//
+//   .timeline-legend .key-items {
+//     padding-left: 0;
+//   }
+//
+//   .timeline-legend .summary-item {
+//     position: relative;
+//     margin-right: 10px;
+//     white-space: nowrap;
+//     display: inline-block;
+//     margin-bottom: 5px;
+//
+//     @include oGridRespondTo($until: S) {
+//       text-transform: uppercase;
+//     }
+//
+//     .key__bullet {
+//       width: 20px;
+//       height: 20px;
+//       border-radius: 50%;
+//       display: inline-block;
+//       vertical-align: middle;
+//
+//       @include oGridRespondTo($until: S) {
+//         width: 12px;
+//         height: 12px;
+//       }
+//     }
+//
+//     &.item__us .key__bullet,
+//     &.item__chinese .key__bullet {
+//       width: 40px;
+//       height: 40px;
+//       position: relative;
+//       top: -10px;
+//       left: 20px;
+//
+//       @include oGridRespondTo($until: S) {
+//         display: none;
+//       }
+//     }
+//
+//     .legend-item__name {
+//       margin-left: 5px;
+//     }
+//   }
+//
+//   #timeline-container {
+//     position: relative;
+//     width: 100%;
+//     height: auto;
+//   }
+//
+//   #timeline-container.tacked {
+//     position: fixed;
+//     width: 100%;
+//     box-sizing: border-box;
+//     top: 0;
+//     left: 0;
+//     background: #fff1e5;
+//     overflow: hidden;
+//     z-index: 5;
+//     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+//     padding: 1.5em 40px 2.5em;
+//     margin: 0;
+//
+//     @include oGridRespondTo($until: S) {
+//       padding: 1.5em 20px 2.5em;
+//     }
+//   }
+//
+//   #timeline {
+//     width: 80%;
+//     position: relative;
+//     margin-left: auto;
+//     margin-right: auto;
+//
+//     @include oGridRespondTo($until: S) {
+//       display: none;
+//     }
+//
+//     #timeline__line {
+//       width: 100%;
+//       height: 4px;
+//       background: #999189;
+//     }
+//
+//     .timeline__circle {
+//       position: absolute;
+//       top: -5.5px;
+//       width: 10px;
+//       height: 10px;
+//       border-radius: 50%;
+//       cursor: pointer;
+//       background: #ffffff;
+//       border: 2px solid #999189;
+//
+//       .timeline__circle__text {
+//         display: none;
+//       }
+//
+//       &:hover {
+//         .timeline__circle__text {
+//           display: block;
+//           text-align: center;
+//           width: 10em;
+//           margin-left: -5em;
+//           margin-top: 1em;
+//           color: #999189;
+//
+//           &-date {
+//             font-weight: 600;
+//           }
+//         }
+//       }
+//
+//       &.selected {
+//         border: 3px solid #1c575c;
+//         top: -6px;
+//         width: 10px;
+//         height: 10px;
+//         background: #26747a;
+//         z-index: 5;
+//
+//         .timeline__circle__text {
+//           display: block;
+//           text-align: center;
+//           width: 10em;
+//           margin-left: -5em;
+//           margin-top: -1.5em;
+//           color: black;
+//
+//           &-date {
+//             font-weight: 600;
+//           }
+//         }
+//       }
+//     }
+//
+//     .timeline__circle__end {
+//       background: #807973;
+//       opacity: 1;
+//     }
+//   }
+// }

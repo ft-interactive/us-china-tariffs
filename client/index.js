@@ -14,9 +14,11 @@ window.addEventListener('scroll', () => {
   const containerPosition = document.querySelector('#timeline-wrapper').offsetTop + containerHeight;
 
   if (window.scrollY - window.innerHeight > containerPosition) {
+    // Add sticky header on scroll
     document.querySelector('#timeline-container').classList.add('tacked');
     document.querySelector('.timeline-legend').classList.remove('hide');
   } else {
+    // Remove sticky header
     document.querySelector('#timeline-container').classList.remove('tacked');
     document.querySelector('.timeline-legend').classList.add('hide');
   }
@@ -36,10 +38,10 @@ Array.from(timelineDots).forEach((timelineDot) => {
   });
 });
 
-const circles = document.querySelectorAll('.timeline__circle');
+const idList = Array.from(timelineDots).map(c => c.dataset.cardId);
 
 function clearCirclesExcept(id) {
-  circles.forEach((circle) => {
+  timelineDots.forEach((circle) => {
     if (circle.dataset.cardId !== id) {
       circle.classList.remove('selected');
     }
@@ -56,20 +58,28 @@ scroller
     progress: true,
   })
   .onStepEnter((trigger) => {
+    // If page refreshed, add sticky header
     document.querySelector('#timeline-container').classList.add('tacked');
     document.querySelector('.timeline-legend').classList.remove('hide');
 
     const id = trigger.element.dataset.cardId;
     const countryName = trigger.element.dataset.countryName === 'us' ? 'us' : 'chinese';
 
+    // Highlight selected timeline circle
     const circle = document.querySelector(`.timeline__circle[data-card-id="${id}"`);
     circle.classList.add('selected');
     clearCirclesExcept(id);
 
+    // Update country icon
     const countryIcon = document.querySelector('.legend-country .summary-item');
     countryIcon.classList.remove('item__us');
     countryIcon.classList.remove('item__china');
     countryIcon.classList.add(`item__${countryName}`);
+
+    // Get current date, previous id, and next id
+    const currentIndex = idList.indexOf(id);
+    const prevIndex = currentIndex === 0 ? 0 : currentIndex - 1;
+    const nextIndex = currentIndex < idList.length - 1 ? currentIndex + 1 : currentIndex;
   })
   .onStepExit((trigger) => {
     const id = trigger.element.dataset.cardId;
@@ -79,6 +89,7 @@ scroller
       trigger.direction !== 'up' &&
       (trigger.index !== circles.length - 1 && trigger.direction !== 'down')
     ) {
+      // Remove selected timeline circled
       circle.classList.remove('selected');
     }
   });

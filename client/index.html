@@ -75,36 +75,45 @@
 
 <div id="timeline-wrapper" class="o-grid-container">
   <div id="timeline-container" class="o-grid-row">
-    <div class="timeline-legend hide">
-      <div class="key-items" data-o-grid-colspan="11">
-        <div class="key-row">
-          {% for group in groups %}
-            <div class="summary-item item__{{ group }}">
-              <span class="key__bullet"></span>
-              <span class="legend-item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
-            </div>
-          {% endfor %}
-          <div class="summary-item item__others">
-            <span class="key__bullet"></span>
-            <span class="legend-item__name">Uncategorised</span>
-          </div>
-        </div>
-      </div>
-      <div class="legend-country" data-o-grid-colspan="1">
-        <span class="summary-item item__us">
-          <span class="key__bullet"></span>
-        </span>
-      </div>
+    <div class="timeline__country-banner timeline__country-banner--china">
+      Chinese tariffs on US goods
     </div>
-    <div id="timeline">
-      {% for group in categorySummary %}
-        <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" style="left: {{ (group.time) }}%" data-card-id={{ group.name }}>
-          <div class="timeline__circle__text">
-            <div class="timeline__circle__text-date">{{ group.name | formatDate('MMMM D') }} – ${{ group.value | roundBillion }}bn</div>
-          </div>
+    <div class="timeline__legend">
+      {% for group in groups %}
+        <div class="timeline__legend-item item__{{ group }}">
+          <span class="key__bullet"></span>
+          <span class="item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
         </div>
       {% endfor %}
-      <div id="timeline__line"></div>
+      <div class="timeline__legend-item item__others">
+        <span class="key__bullet"></span>
+        <span class="item__name">Uncategorised</span>
+      </div>
+    </div>
+    <div class="timeline__navigation o-grid-row">
+      <div class="timeline__line-container" data-o-grid-colspan="8">
+        <div class="timeline__line-text">
+          <span class="timeline__line-date">June 16</span>
+          <span class="timeline__line-value">50bn</span>
+        </div>
+        <div class="timeline__line">
+          {% for group in categorySummary %}
+            <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" style="left: {{ (group.time) }}%" data-card-id={{ group.name }}>
+              <div class="timeline__circle__text">
+                <div class="timeline__circle__text-date">{{ group.name | formatDate('MMMM D') }} – ${{ group.value | roundBillion }}bn</div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="timeline__buttons" data-o-grid-colspan="4">
+        <div class="timeline__left-button">
+          <i class="o-icons-icon o-icons-icon--arrow-left"></i>
+        </div>
+        <div class="timeline__right-button">
+          <i class="o-icons-icon o-icons-icon--arrow-right"></i>
+        </div>
+      </div>
     </div>
   </div>
 </div>
