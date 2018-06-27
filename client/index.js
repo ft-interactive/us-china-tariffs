@@ -135,7 +135,6 @@ scroller
     offset: ratio,
     container: '.scroll-container',
     graphic: '.timeline-container',
-    progress: true,
   })
   .onContainerEnter(() => {
     document.querySelector('#timeline-container').classList.add('tacked');
@@ -201,6 +200,9 @@ window.addEventListener('resize', () => {
   scroller.setup({
     step: '.date-step',
     offset: ratio,
-    progress: true,
+    container: '.scroll-container',
+    graphic: '.timeline-container',
   });
 });
+
+updateButtons(0);
