@@ -71,6 +71,7 @@ Array.from(timelineDots).forEach((timelineDot) => {
 const idList = Array.from(timelineDots).map(c => c.dataset.cardId);
 const leftButton = document.querySelector('.timeline__left-button');
 const rightButton = document.querySelector('.timeline__right-button');
+const topButton = document.querySelector('.timeline__top-button');
 
 function updateButtons(newIndex) {
   if (newIndex === 0) {
@@ -127,6 +128,13 @@ rightButton.addEventListener('click', () => {
   scrollToId(nextDate);
 
   updateButtons(currentIndex + 1);
+});
+
+topButton.addEventListener('click', () => {
+  const firstId = idList[0];
+  updateButtons(0);
+
+  scrollToId(firstId);
 });
 
 function clearCirclesExcept(id) {

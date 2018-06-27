@@ -105,6 +105,8 @@
 
   .timeline__buttons {
     color: #ffffff;
+    background-color: #fff1e5;
+    margin: 0;
 
     i {
       width: 40px;
@@ -112,11 +114,26 @@
       margin-top: 2px;
     }
 
-    display: flex;
     padding: 0;
 
+    .timeline__top-button {
+      background-color: #46a5b2;
+      border: none;
+      color: #ffffff;
+      margin-bottom: 1px;
+
+      width: 100%;
+      padding: 8px;
+      font-weight: 600;
+      font-size: 1em;
+    }
+
     .timeline__left-button {
-      margin-right: 2px;
+      margin-right: 1px;
+    }
+
+    .timeline__direction-container {
+      display: flex;
     }
 
     .timeline__left-button,
