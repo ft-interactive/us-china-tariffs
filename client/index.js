@@ -4,7 +4,13 @@ import * as d3TimeFormat from 'd3-time-format';
 
 const timelineDots = document.querySelectorAll('.timeline__circle');
 
-const offset = 140;
+// Calculate ratio for scrolling
+let ratio =
+  document.querySelector('#timeline-container').getBoundingClientRect().height / window.innerHeight;
+
+if (ratio > 0.2) {
+  ratio *= 1.15;
+}
 
 const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
 const getMonth = d3TimeFormat.timeFormat('%B');
@@ -14,7 +20,7 @@ function scrollToId(id) {
   const yPos =
     document.querySelector(`#tariffs-${id}`).getBoundingClientRect().top +
     window.scrollY -
-    offset -
+    document.querySelector('#timeline-container').getBoundingClientRect().height -
     20;
 
   window.scrollTo(0, yPos);
@@ -120,10 +126,6 @@ function clearCirclesExcept(id) {
 // Add scroll triggers to date sections
 const scroller = scrollama();
 
-// Calculate ratio for scrolling
-let ratio =
-  document.querySelector('#timeline-container').getBoundingClientRect().height / window.innerHeight;
-
 scroller
   .setup({
     step: '.date-step',
@@ -175,6 +177,10 @@ window.addEventListener('resize', () => {
   ratio =
     document.querySelector('#timeline-container').getBoundingClientRect().height /
     window.innerHeight;
+
+  if (ratio > 0.2) {
+    ratio *= 1.15;
+  }
 
   scroller.setup({
     step: '.date-step',
