@@ -206,3 +206,6 @@ window.addEventListener('resize', () => {
 });
 
 updateButtons(0);
+
+const firstCountry = document.querySelector(`#tariffs-${idList[0]}`).dataset.countryName;
+updateHeader(firstCountry);
