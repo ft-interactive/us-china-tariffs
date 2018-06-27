@@ -7,10 +7,7 @@ const timelineDots = document.querySelectorAll('.timeline__circle');
 // Calculate ratio for scrolling
 let ratio =
   document.querySelector('#timeline-container').getBoundingClientRect().height / window.innerHeight;
-
-if (ratio > 0.2) {
-  ratio *= 1.15;
-}
+ratio *= 1.15;
 
 const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
 const getMonth = d3TimeFormat.timeFormat('%B');
@@ -25,23 +22,6 @@ function scrollToId(id) {
 
   window.scrollTo(0, yPos);
 }
-
-// Trigger sticky header
-window.addEventListener('scroll', () => {
-  const containerHeight =
-    document.querySelector('#timeline-wrapper').getBoundingClientRect().bottom -
-    document.querySelector('#timeline-wrapper').getBoundingClientRect().top;
-
-  const containerPosition = document.querySelector('#timeline-wrapper').offsetTop + containerHeight;
-
-  if (window.scrollY > containerPosition) {
-    // Add sticky header on scroll
-    document.querySelector('#timeline-container').classList.add('tacked');
-  } else {
-    // Remove sticky header
-    document.querySelector('#timeline-container').classList.remove('tacked');
-  }
-});
 
 // Add click events to timeline circles
 Array.from(timelineDots).forEach((timelineDot) => {
@@ -135,6 +115,7 @@ topButton.addEventListener('click', () => {
   updateButtons(0);
 
   scrollToId(firstId);
+  scrollToId(firstId);
 });
 
 function clearCirclesExcept(id) {
@@ -152,11 +133,25 @@ scroller
   .setup({
     step: '.date-step',
     offset: ratio,
+    container: '.scroll-container',
+    graphic: '.timeline-container',
     progress: true,
+  })
+  .onContainerEnter(() => {
+    document.querySelector('#timeline-container').classList.add('tacked');
+    document.querySelector('#timeline-container').classList.remove('initial');
+    const height =
+      document.querySelector('#timeline-container').getBoundingClientRect().height + 20;
+    document.querySelector('.scroll-container .content').style.paddingTop = `${height}px`;
+  })
+  .onContainerExit(() => {
+    document.querySelector('#timeline-container').classList.remove('tacked');
+    document.querySelector('#timeline-container').classList.add('initial');
+    document.querySelector('.scroll-container .content').style.paddingTop = '20px';
   })
   .onStepEnter((trigger) => {
     // If page refreshed, add sticky header
-    document.querySelector('#timeline-container').classList.add('tacked');
+    // document.querySelector('#timeline-container').classList.add('tacked');
 
     const id = trigger.element.dataset.cardId;
     const countryName = trigger.element.dataset.countryName;
@@ -201,9 +196,7 @@ window.addEventListener('resize', () => {
     document.querySelector('#timeline-container').getBoundingClientRect().height /
     window.innerHeight;
 
-  if (ratio > 0.2) {
-    ratio *= 1.15;
-  }
+  ratio *= 1.15;
 
   scroller.setup({
     step: '.date-step',

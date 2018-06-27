@@ -10,16 +10,23 @@
   @include oIconsGetIcon('arrow-right', #ffffff, 40);
 }
 
+.scroll-container {
+  .content {
+    padding-top: 20px;
+  }
+}
+
 #timeline-wrapper {
-  #timeline-container {
+  #timeline-container.initial {
+    width: 100vw;
+    left: 50%;
     position: relative;
-    width: 100%;
-    height: auto;
+    margin-left: -50vw;
   }
 
   #timeline-container.tacked {
     position: fixed;
-    box-sizing: border-box;
+    -webkit-transform: translateZ(0);
     top: 0;
     left: 0;
     background: #fff1e5;
@@ -27,6 +34,10 @@
     z-index: 5;
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
     margin: 0;
+  }
+
+  #timeline-container.tacked + .timeline-space {
+    padding-top: 20px;
   }
 
   .timeline__country-banner {
