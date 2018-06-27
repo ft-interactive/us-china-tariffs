@@ -10,6 +10,16 @@ const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
 const getMonth = d3TimeFormat.timeFormat('%B');
 const getDay = d3TimeFormat.timeFormat('%e');
 
+function scrollToId(id) {
+  const yPos =
+    document.querySelector(`#tariffs-${id}`).getBoundingClientRect().top +
+    window.scrollY -
+    offset -
+    20;
+
+  window.scrollTo(0, yPos);
+}
+
 // Trigger sticky header
 window.addEventListener('scroll', () => {
   const containerHeight =
@@ -31,11 +41,7 @@ window.addEventListener('scroll', () => {
 Array.from(timelineDots).forEach((timelineDot) => {
   timelineDot.addEventListener('click', () => {
     const id = timelineDot.dataset.cardId;
-    const yPos =
-      document.querySelector(`#tariffs-${id}`).getBoundingClientRect().top +
-      window.scrollY -
-      offset -
-      20;
+    scrollToId(id);
   });
 
   timelineDot.addEventListener('mouseover', () => {
@@ -55,7 +61,53 @@ Array.from(timelineDots).forEach((timelineDot) => {
   });
 });
 
+// Get list of ids
 const idList = Array.from(timelineDots).map(c => c.dataset.cardId);
+const leftButton = document.querySelector('.timeline__left-button');
+const rightButton = document.querySelector('.timeline__right-button');
+
+function updateButtons(newIndex) {
+  if (newIndex === 0) {
+    leftButton.disabled = true;
+    leftButton.classList.add('disabled');
+  } else {
+    leftButton.disabled = false;
+    leftButton.classList.remove('disabled');
+  }
+
+  if (newIndex === idList.length - 1) {
+    rightButton.disabled = true;
+    rightButton.classList.add('disabled');
+  } else {
+    rightButton.disabled = false;
+    rightButton.classList.remove('disabled');
+  }
+}
+
+// Add listeners for navigation
+leftButton.addEventListener('click', () => {
+  const currentCircle = document.querySelector('.timeline__circle.selected');
+  const currentId = currentCircle.dataset.cardId;
+
+  const currentIndex = idList.indexOf(currentId);
+  const nextDate = idList[currentIndex - 1];
+
+  scrollToId(nextDate);
+
+  updateButtons(currentIndex - 1);
+});
+
+rightButton.addEventListener('click', () => {
+  const currentCircle = document.querySelector('.timeline__circle.selected');
+  const currentId = currentCircle.dataset.cardId;
+
+  const currentIndex = idList.indexOf(currentId);
+  const nextDate = idList[currentIndex + 1];
+
+  scrollToId(nextDate);
+
+  updateButtons(currentIndex + 1);
+});
 
 function clearCirclesExcept(id) {
   timelineDots.forEach((circle) => {
@@ -68,10 +120,14 @@ function clearCirclesExcept(id) {
 // Add scroll triggers to date sections
 const scroller = scrollama();
 
+// Calculate ratio for scrolling
+let ratio =
+  document.querySelector('#timeline-container').getBoundingClientRect().height / window.innerHeight;
+
 scroller
   .setup({
     step: '.date-step',
-    offset: 0.175,
+    offset: ratio,
     progress: true,
   })
   .onStepEnter((trigger) => {
@@ -96,8 +152,11 @@ scroller
     const timeString = `${getMonth(time)} ${getDay(time).trim()}`;
     const value = trigger.element.dataset.cardValue;
 
+    // Update text
     document.querySelector('.timeline__line-date').innerText = timeString;
     document.querySelector('.timeline__line-value').innerText = `$${value}bn`;
+
+    updateButtons(currentIndex);
   })
   .onStepExit((trigger) => {
     const id = trigger.element.dataset.cardId;
@@ -113,5 +172,13 @@ scroller
   });
 
 window.addEventListener('resize', () => {
-  scrollama.resize();
+  ratio =
+    document.querySelector('#timeline-container').getBoundingClientRect().height /
+    window.innerHeight;
+
+  scroller.setup({
+    step: '.date-step',
+    offset: ratio,
+    progress: true,
+  });
 });

@@ -87,7 +87,7 @@
     i {
       width: 40px;
       height: 40px;
-      margin-top: 12px;
+      margin-top: 2px;
     }
 
     display: flex;
@@ -103,6 +103,11 @@
       background-color: #46a5b2;
       text-align: center;
       vertical-align: middle;
+    }
+
+    .timeline__left-button.disabled,
+    .timeline__right-button.disabled {
+      opacity: 0.4;
     }
   }
 
