@@ -1,4 +1,5 @@
-export default (environment = 'development') => ({ // eslint-disable-line
+export default (environment = 'development') => ({
+  // eslint-disable-line
 
   // link file UUID
   id: 'cfd69d82-3871-11e8-8b98-2f31af407cc8',
@@ -45,7 +46,8 @@ export default (environment = 'development') => ({ // eslint-disable-line
     { name: 'Ed Crooks', url: 'https://www.ft.com/stream/42dab372-28d1-364c-b4f2-fc7c4a07e906' },
     { name: 'Jane Pong', url: 'https://www.ft.com/jane-pong' },
     { name: 'Robin Kwong', url: 'https://www.ft.com/robin-kwong' },
-    { name: 'Tom Hancock', url: 'https://www.ft.com/stream/95f0a07f-a3b1-32ff-ba04-45ad17ad1159' }
+    { name: 'Tom Hancock', url: 'https://www.ft.com/stream/95f0a07f-a3b1-32ff-ba04-45ad17ad1159' },
+    { name: 'Cale Tilford', url: 'https://www.ft.com/cale-tilford' },
   ],
 
   // Appears in the HTML <title>
@@ -103,7 +105,6 @@ export default (environment = 'development') => ({ // eslint-disable-line
   },
 
   tracking: {
-
     /*
 
     Microsite Name
@@ -115,7 +116,6 @@ export default (environment = 'development') => ({ // eslint-disable-line
     Also used for pages that do not have a UUID for whatever reason
     */
     // micrositeName: '',
-
     /*
     Product name
 

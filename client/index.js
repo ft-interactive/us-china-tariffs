@@ -143,7 +143,7 @@ scroller
       document.querySelector('#timeline-container').getBoundingClientRect().height + 20;
     document.querySelector('.scroll-container .content').style.paddingTop = `${height}px`;
   })
-  .onContainerExit(() => {
+  .onContainerExit((trigger) => {
     document.querySelector('#timeline-container').classList.remove('tacked');
     document.querySelector('#timeline-container').classList.add('initial');
     document.querySelector('.scroll-container .content').style.paddingTop = '20px';

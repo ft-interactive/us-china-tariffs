@@ -60,3 +60,24 @@ body {
     max-width: 700px;
   }
 }
+
+.image-set {
+  .image-container img {
+    width: 100%;
+  }
+  margin-bottom: 3em;
+}
+
+.image-container.small {
+  @include oGridRespondTo($until: S) {
+    display: block;
+  }
+  display: none;
+}
+
+.image-container.medium {
+  @include oGridRespondTo(S) {
+    display: block;
+  }
+  display: none;
+}

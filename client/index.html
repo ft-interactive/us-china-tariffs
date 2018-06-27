@@ -7,70 +7,13 @@
 {{ data.content.intro }}
 {% endmarkdown %}
 
-<div id="key-container">
-  <div>KEY</div>
-  <div id="key">
-    <div class="key-row">
-      {% for group in groups %}
-        <span class="summary-item item__{{ group }}">
-          <span class="key__bullet"></span>
-          <span class="item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
-        </span>
-      {% endfor %}
-      <span class="summary-item item__others">
-        <span class="key__bullet"></span>
-        <span class="item__name">Uncategorised</span>
-      </span>
-    </div>
-    <div class="key-row">
-      <span class="summary-item item__chinese">
-        <span class="key__bullet"></span>
-        <span class="item__name">Chinese tariffs on US goods</span>
-      </span>
-      <span class="summary-item item__us">
-        <span class="key__bullet"></span>
-        <span class="item__name">US tariffs on Chinese goods</span>
-      </span>
-    </div>
+<div class="image-set">
+  <div class="image-container graphic-b-1 small">
+    <img alt="US-China trade war so far" src="images/trade-war-final_-mobile.png">
   </div>
-</div>
-
-<div id="summary-graphic">
-  <div id="summary-graphic__label">Total trade affected: ${{ totalTradeAffected | roundBillion }}bn</div>
-
-  {% for group in categorySummary %}
-  {% if group.display %}
-  <div class="bar-group-name">
-    <a href="#tariffs-{{ group.name }}">{{ group.name | formatDate('dddd, MMMM D') }}</a>
+  <div class="image-container graphic-b-1 medium">
+    <img alt="US-China trade war so far" src="images/trade-war-final_-mid.png">
   </div>
-  <div class="bar-wrapper-outer">
-    <div class="bar-wrapper">
-      <div class="bar-container__line"></div>
-      <span class="bar item__other" data-category="other" style="width: {{ 100 * (group.value / maxValue) }}%"></span>
-      <div class="bar-container">
-        {% for category, items in group.categories %}
-        <span class="bar item__{{category}}" data-category="{{ category }}" data-dollareffect="{{ items | getDollarSum }}" style="width: {{ 100 * (items | getDollarSum / maxValue) }}%"></span>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="bar-group-metadata">
-      <div class="bar-group-metadata__value">
-        ${{ group.value | roundBillion }}bn
-        <span class="bar-group-metadata__proposal">{% if group.proposed %}(proposed){% endif %}</span>
-      </div>
-      {% if group.country == 'us' %}
-      <span class="summary-item item__us">
-        <span class="key__bullet"></span>
-      </span>
-      {% else %}
-      <span class="summary-item item__chinese">
-        <span class="key__bullet"></span>
-      </span>
-      {% endif %}
-    </div>
-  </div>
-  {% endif %}
-  {% endfor %}
 </div>
 
 <div class="scroll-container">
