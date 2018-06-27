@@ -35,11 +35,33 @@
     padding: 5px 0;
     font-size: 24px;
     font-weight: 500;
+    color: #000000;
+    background-color: #f2e5da;
   }
 
-  .timeline__country-banner.timeline__country-banner--china {
-    background-color: #cc0000;
-    color: #ffffff;
+  .timeline__country-banner {
+    .key__bullet {
+      margin: 0 5px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      bottom: 2px;
+    }
+
+    &.china {
+      .key__bullet {
+        background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691573-vwitu.svg);
+      }
+    }
+
+    &.us {
+      .key__bullet {
+        background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691501-bz2w0.svg);
+      }
+    }
   }
 
   .timeline__legend {

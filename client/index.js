@@ -90,6 +90,20 @@ function updateButtons(newIndex) {
   }
 }
 
+function updateHeader(country) {
+  const topBanner = document.querySelector('.timeline__country-banner');
+  topBanner.classList.remove('china');
+  topBanner.classList.remove('us');
+
+  if (country === 'china') {
+    topBanner.classList.add('china');
+    topBanner.querySelector('.text').innerText = 'Chinese tariffs on US goods';
+  } else {
+    topBanner.classList.add('us');
+    topBanner.querySelector('.text').innerText = 'US tariffs on Chinese goods';
+  }
+}
+
 // Add listeners for navigation
 leftButton.addEventListener('click', () => {
   const currentCircle = document.querySelector('.timeline__circle.selected');
@@ -137,7 +151,7 @@ scroller
     document.querySelector('#timeline-container').classList.add('tacked');
 
     const id = trigger.element.dataset.cardId;
-    const countryName = trigger.element.dataset.countryName === 'us' ? 'us' : 'chinese';
+    const countryName = trigger.element.dataset.countryName;
 
     // Highlight selected timeline circle
     const circle = document.querySelector(`.timeline__circle[data-card-id="${id}"`);
@@ -159,6 +173,7 @@ scroller
     document.querySelector('.timeline__line-value').innerText = `$${value}bn`;
 
     updateButtons(currentIndex);
+    updateHeader(countryName);
   })
   .onStepExit((trigger) => {
     const id = trigger.element.dataset.cardId;
