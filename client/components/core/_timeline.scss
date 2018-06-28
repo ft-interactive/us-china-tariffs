@@ -193,9 +193,17 @@
 
       &.selected {
         background: #46a5b2;
-        width: 12px;
-        height: 12px;
-        bottom: 6.5px;
+
+        .timeline__circle__outer {
+          position: relative;
+          bottom: 3px;
+          right: 3px;
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+          cursor: pointer;
+          border: 1px solid #46a5b2;
+        }
       }
 
       .timeline__circle__text {
