@@ -10,14 +10,40 @@
   @include oIconsGetIcon('arrow-right', #ffffff, 40);
 }
 
+.icon-arrow-up {
+  @include oIconsGetIcon('arrow-up', #ffffff, 40);
+}
+
 .scroll-container {
   .content {
     padding-top: 20px;
   }
 }
 
-.bottom-nav {
+.bottom-nav.hidden {
   display: none;
+}
+
+.bottom-nav {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  -webkit-transform: translateZ(0);
+  z-index: 5;
+
+  .timeline__top-button {
+    background-color: #46a5b2;
+    border: none;
+    color: #ffffff;
+    padding: 8px 12px;
+
+    i {
+      width: 40px;
+      height: 40px;
+      // margin-top: 2px;
+    }
+  }
 }
 
 #timeline-wrapper {
@@ -134,18 +160,6 @@
     }
 
     padding: 0;
-
-    .timeline__top-button {
-      background-color: #46a5b2;
-      border: none;
-      color: #ffffff;
-      margin-bottom: 1px;
-
-      width: 100%;
-      padding: 8px;
-      font-weight: 600;
-      font-size: 1em;
-    }
 
     .timeline__left-button {
       margin-right: 1px;
