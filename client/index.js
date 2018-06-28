@@ -7,7 +7,7 @@ const timelineDots = document.querySelectorAll('.timeline__circle');
 // Calculate ratio for scrolling
 let ratio =
   document.querySelector('#timeline-container').getBoundingClientRect().height / window.innerHeight;
-ratio *= 1.15;
+ratio *= 1.2;
 
 const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
 const getMonth = d3TimeFormat.timeFormat('%B');
@@ -195,7 +195,7 @@ window.addEventListener('resize', () => {
     document.querySelector('#timeline-container').getBoundingClientRect().height /
     window.innerHeight;
 
-  ratio *= 1.15;
+  ratio *= 1.2;
 
   scroller.setup({
     step: '.date-step',
