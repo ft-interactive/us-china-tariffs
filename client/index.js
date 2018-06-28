@@ -143,12 +143,14 @@ scroller
       document.querySelector('#timeline-container').getBoundingClientRect().height + 20;
     document.querySelector('.scroll-container .content').style.paddingTop = `${height}px`;
     document.querySelector('.bottom-nav').classList.remove('hidden');
+    document.querySelector('.timeline__country-banner').classList.remove('large-text');
   })
   .onContainerExit((trigger) => {
     document.querySelector('#timeline-container').classList.remove('tacked');
     document.querySelector('#timeline-container').classList.add('initial');
     document.querySelector('.scroll-container .content').style.paddingTop = '20px';
     document.querySelector('.bottom-nav').classList.add('hidden');
+    document.querySelector('.timeline__country-banner').classList.add('large-text');
   })
   .onStepEnter((trigger) => {
     // If page refreshed, add sticky header

@@ -71,14 +71,25 @@
     padding-top: 20px;
   }
 
+  .timeline__country-banner.large-text {
+    @include oGridRespondTo($from: S) {
+      font-size: 28px;
+    }
+    margin-bottom: 0.5em;
+    background-color: #fff1e5;
+  }
+
   .timeline__country-banner {
     width: 100%;
     text-align: center;
     padding: 5px 0;
-    font-size: 24px;
     font-weight: 500;
     color: #000000;
     background-color: #f2e5da;
+    font-size: 24px;
+    @include oGridRespondTo($until: S) {
+      font-size: 22px;
+    }
   }
 
   .timeline__country-banner {
