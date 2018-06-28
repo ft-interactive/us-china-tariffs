@@ -19,7 +19,7 @@ export default async (environment = 'development') => {
     ['items', 'content|object', 'timeline'],
     { republish: true },
   );
-  const groups = _.sortBy(_.uniq(_.pluck(data.items, 'category')));
+  const groups = _.uniq(_.pluck(data.items, 'category'));
 
   const itemsWithoutValues = data.items.filter(a => a.dollareffect === null);
   const itemsWithValues = _.sortBy(
