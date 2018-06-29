@@ -6,8 +6,9 @@ const timelineDots = document.querySelectorAll('.timeline__circle');
 
 // Calculate ratio for scrolling
 let ratio =
-  document.querySelector('#timeline-container').getBoundingClientRect().height / window.innerHeight;
-ratio *= 1.2;
+  document.querySelector('#timeline-container').getBoundingClientRect().height /
+  window.innerHeight *
+  1.8;
 
 const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
 const getMonth = d3TimeFormat.timeFormat('%B');
@@ -71,6 +72,20 @@ function updateButtons(newIndex) {
   }
 }
 
+function clearCirclesExcept(id) {
+  timelineDots.forEach((circle) => {
+    if (circle.dataset.cardId !== id) {
+      circle.classList.remove('selected');
+    }
+  });
+}
+
+function updateTimelineSelection(id) {
+  const circle = document.querySelector(`.timeline__circle[data-card-id="${id}"`);
+  circle.classList.add('selected');
+  clearCirclesExcept(id);
+}
+
 function updateHeader(country) {
   const topBanner = document.querySelector('.timeline__country-banner');
   topBanner.classList.remove('china');
@@ -118,14 +133,6 @@ topButton.addEventListener('click', () => {
   scrollToId(firstId);
 });
 
-function clearCirclesExcept(id) {
-  timelineDots.forEach((circle) => {
-    if (circle.dataset.cardId !== id) {
-      circle.classList.remove('selected');
-    }
-  });
-}
-
 // Add scroll triggers to date sections
 const scroller = scrollama();
 
@@ -160,9 +167,7 @@ scroller
     const countryName = trigger.element.dataset.countryName;
 
     // Highlight selected timeline circle
-    const circle = document.querySelector(`.timeline__circle[data-card-id="${id}"`);
-    circle.classList.add('selected');
-    clearCirclesExcept(id);
+    updateTimelineSelection(id);
 
     // Get current date, previous id, and next id
     const currentIndex = idList.indexOf(id);
@@ -197,9 +202,8 @@ scroller
 window.addEventListener('resize', () => {
   ratio =
     document.querySelector('#timeline-container').getBoundingClientRect().height /
-    window.innerHeight;
-
-  ratio *= 1.2;
+    window.innerHeight *
+    1.5;
 
   scroller.setup({
     step: '.date-step',
