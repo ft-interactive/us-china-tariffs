@@ -1,9 +1,13 @@
 import * as bertha from 'bertha-client';
 import _ from 'underscore';
+import * as d3Array from 'd3-array';
+import * as d3TimeFormat from 'd3-time-format';
+import * as d3Scale from 'd3-scale';
 
 import article from './article';
 import getFlags from './flags';
 import getOnwardJourney from './onward-journey';
+import timelineSpacing from './timeline-spacing';
 
 export default async (environment = 'development') => {
   const d = await article(environment);
@@ -15,7 +19,7 @@ export default async (environment = 'development') => {
     ['items', 'content|object', 'timeline'],
     { republish: true },
   );
-  const groups = _.sortBy(_.uniq(_.pluck(data.items, 'category')));
+  const groups = _.uniq(_.pluck(data.items, 'category'));
 
   const itemsWithoutValues = data.items.filter(a => a.dollareffect === null);
   const itemsWithValues = _.sortBy(
@@ -33,6 +37,20 @@ export default async (environment = 'development') => {
     categories: _.groupBy(_.sortBy(groupedItems[date.name], a => a.category), 'category'),
   }));
 
+  // Calculate positions in the timeline
+  const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
+  const max = d3Array.max(categorySummary, x => parseTime(x.name));
+  const min = d3Array.min(categorySummary, x => parseTime(x.name));
+  const timeScale = d3Scale
+    .scaleTime()
+    .domain([min, max])
+    .range([0, 100]);
+  categorySummary.forEach((x, i) => {
+    x.time = timeScale(parseTime(x.name));
+  });
+  timelineSpacing(categorySummary, 3, 1, [0, 100]);
+
+  // Calculate total trade affected by tariffs
   const totalTradeAffected = categorySummary.reduce((a, b) => (b.display ? a + b.value : a), 0);
 
   return {

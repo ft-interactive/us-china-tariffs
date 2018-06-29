@@ -1,4 +1,5 @@
-export default (environment = 'development') => ({ // eslint-disable-line
+export default (environment = 'development') => ({
+  // eslint-disable-line
   prod: environment === 'production',
   errorReporting: environment === 'production',
   analytics: environment === 'production',

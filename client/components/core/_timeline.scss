@@ -1,0 +1,256 @@
+@import 'o-grid/main';
+@import 'o-icons/main';
+@import 'o-colors/main';
+
+.icon-arrow-left {
+  @include oIconsGetIcon('arrow-left', #ffffff, 40);
+}
+
+.icon-arrow-right {
+  @include oIconsGetIcon('arrow-right', #ffffff, 40);
+}
+
+.icon-arrow-up {
+  @include oIconsGetIcon('arrow-up', #ffffff, 40);
+}
+
+.scroll-container {
+  .content {
+    padding-top: 20px;
+  }
+}
+
+.bottom-nav.hidden {
+  display: none;
+}
+
+.bottom-nav {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 3%;
+  -webkit-transform: translateZ(0);
+  z-index: 5;
+
+  .button-text {
+    position: relative;
+    bottom: 8px;
+  }
+
+  .timeline__top-button {
+    background-color: #0d7680;
+    border: none;
+    color: #ffffff;
+    padding: 8px 12px;
+
+    i {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+#timeline-wrapper {
+  color: #33302e;
+
+  #timeline-container.tacked {
+    width: 100%;
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    top: 0;
+    left: 0;
+    background: #fff1e5;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+    margin: 0;
+  }
+
+  .timeline__country-banner.large-text {
+    opacity: 0;
+  }
+
+  .timeline__country-banner {
+    text-align: left;
+    width: 100%;
+    padding: 5px 0;
+    font-weight: 500;
+    font-size: 24px;
+    @include oGridRespondTo($until: S) {
+      font-size: 22px;
+    }
+  }
+
+  .timeline__country-banner {
+    .key__bullet {
+      margin-right: 5px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      bottom: 2px;
+    }
+
+    &.china {
+      .key__bullet {
+        background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691573-vwitu.svg);
+      }
+    }
+
+    &.us {
+      .key__bullet {
+        background-image: url(http://ft-ig-images-prod.s3-website-eu-west-1.amazonaws.com/v1/8476691501-bz2w0.svg);
+      }
+    }
+  }
+
+  .timeline__legend-key-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+
+  .timeline__legend {
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+
+  .timeline__legend-item {
+    position: relative;
+    white-space: nowrap;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    margin-right: 10px;
+
+    .key__bullet {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .item__name {
+      margin-left: 5px;
+      position: relative;
+      top: 1px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .timeline__navigation {
+    width: 100%;
+    margin: 0;
+
+    @include oGridRespondTo($until: S) {
+      width: 106%;
+      margin-left: -3.5%;
+    }
+  }
+
+  .timeline__line-container {
+    background-color: #f2dfce;
+  }
+
+  .timeline__buttons {
+    color: #ffffff;
+    background-color: #fff1e5;
+    margin: 0;
+    display: flex;
+
+    i {
+      width: 40px;
+      height: 40px;
+      margin-top: 2px;
+    }
+
+    padding: 0;
+
+    .timeline__left-button {
+      margin-right: 1px;
+    }
+
+    .timeline__left-button,
+    .timeline__right-button {
+      flex: auto;
+      background-color: #0d7680;
+      text-align: center;
+      vertical-align: middle;
+      border: none;
+    }
+
+    .timeline__left-button.disabled,
+    .timeline__right-button.disabled {
+      opacity: 0.4;
+    }
+  }
+
+  .timeline__line-container {
+    padding-top: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 3px;
+
+    .timeline__line {
+      max-width: 100%;
+      height: 2px;
+      background: #b9afa5;
+      margin: auto;
+      margin-top: 14px;
+      margin-bottom: 14px;
+
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .timeline__circle {
+      position: relative;
+      bottom: 4px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: #b9afa5;
+      border: 2px solid #f2dfce;
+
+      &.selected {
+        background: #0d7680;
+
+        .timeline__circle__outer {
+          position: relative;
+          bottom: 3px;
+          right: 3px;
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+          cursor: pointer;
+          border: 1px solid #0d7680;
+        }
+      }
+
+      .timeline__circle__text {
+        display: none;
+      }
+    }
+
+    .timeline__line-text-left,
+    .timeline__line-text-right {
+      display: inline;
+    }
+
+    .timeline__line-text-right {
+      float: right;
+      color: #66605c;
+      display: none;
+    }
+
+    .timeline__line-date {
+      font-weight: 600;
+    }
+  }
+}

@@ -37,7 +37,6 @@ body {
   }
 }
 
-
 .graphic {
   display: block;
   max-width: 100%;
@@ -60,5 +59,29 @@ body {
   &-b-1 {
     max-width: 700px;
   }
+}
 
+.image-set {
+  .image-container img {
+    width: 100%;
+  }
+  margin-bottom: 1em;
+}
+
+.image-container.small {
+  @include oGridRespondTo($until: S) {
+    display: block;
+  }
+  display: none;
+}
+
+.image-container.medium {
+  @include oGridRespondTo(S) {
+    display: block;
+  }
+  display: none;
+}
+
+.o-typography-standfirst {
+  margin-bottom: 24px;
 }
