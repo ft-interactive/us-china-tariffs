@@ -3,10 +3,6 @@
 
 {% block article_body %}
 
-{% markdown %}
-{{ data.content.intro }}
-{% endmarkdown %}
-
 <div class="image-set">
   <div class="image-container graphic-b-1 small">
     <img alt="US-China trade war so far" src="images/trade-war-final_-mobile.png">
@@ -15,6 +11,10 @@
     <img alt="US-China trade war so far" src="images/trade-war-final_-mid.png">
   </div>
 </div>
+
+{% markdown %}
+{{ data.content.intro }}
+{% endmarkdown %}
 
 <div class="scroll-container">
   <div id="timeline-wrapper" class="o-grid-container">

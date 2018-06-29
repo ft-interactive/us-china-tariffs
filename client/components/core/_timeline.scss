@@ -67,16 +67,8 @@
     margin: 0;
   }
 
-  #timeline-container.tacked + .timeline-space {
-    padding-top: 20px;
-  }
-
   .timeline__country-banner.large-text {
-    @include oGridRespondTo($from: S) {
-      font-size: 28px;
-    }
-    margin-bottom: 0.5em;
-    background-color: #fff1e5;
+    display: none;
   }
 
   .timeline__country-banner {
