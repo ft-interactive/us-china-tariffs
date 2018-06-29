@@ -147,12 +147,14 @@ scroller
     document.querySelector('#timeline-container').classList.add('tacked');
     document.querySelector('#timeline-container').classList.remove('initial');
     const height =
-      document.querySelector('#timeline-container').getBoundingClientRect().height + 20;
+      document.querySelector('#timeline-container').getBoundingClientRect().height + 40;
     document.querySelector('.scroll-container .content').style.paddingTop = `${height}px`;
     document.querySelector('.bottom-nav').classList.remove('hidden');
     document.querySelector('.timeline__country-banner').classList.remove('large-text');
     document.querySelector('.timeline-inner-container').classList.add('o-grid-container');
     document.querySelector('.timeline-cols').dataset.oGridColspan = '12 S11 Scenter M9 L8 XL7';
+    rightButton.disabled = false;
+    rightButton.classList.remove('disabled');
   })
   .onContainerExit((trigger) => {
     if (trigger.direction === 'up') {
@@ -163,6 +165,8 @@ scroller
       document.querySelector('.timeline__country-banner').classList.add('large-text');
       document.querySelector('.timeline-inner-container').classList.remove('o-grid-container');
       document.querySelector('.timeline-cols').dataset.oGridColspan = '';
+      rightButton.disabled = true;
+      rightButton.classList.add('disabled');
     }
   })
   .onStepEnter((trigger) => {
