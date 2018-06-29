@@ -28,12 +28,17 @@
   display: block;
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 3%;
   -webkit-transform: translateZ(0);
   z-index: 5;
 
+  .button-text {
+    position: relative;
+    bottom: 8px;
+  }
+
   .timeline__top-button {
-    background-color: #46a5b2;
+    background-color: #0d7680;
     border: none;
     color: #ffffff;
     padding: 8px 12px;
@@ -46,12 +51,7 @@
 }
 
 #timeline-wrapper {
-  #timeline-container.initial {
-    width: 100vw;
-    left: 50%;
-    position: relative;
-    margin-left: -50vw;
-  }
+  color: #33302e;
 
   #timeline-container.tacked {
     width: 100%;
@@ -71,12 +71,10 @@
   }
 
   .timeline__country-banner {
+    text-align: left;
     width: 100%;
-    text-align: center;
     padding: 5px 0;
     font-weight: 500;
-    color: #000000;
-    background-color: #f2e5da;
     font-size: 24px;
     @include oGridRespondTo($until: S) {
       font-size: 22px;
@@ -85,7 +83,7 @@
 
   .timeline__country-banner {
     .key__bullet {
-      margin: 0 5px;
+      margin-right: 5px;
       width: 18px;
       height: 18px;
       border-radius: 50%;
@@ -108,11 +106,16 @@
     }
   }
 
+  .timeline__legend-key-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+
   .timeline__legend {
     width: 100%;
     padding-top: 12px;
     padding-bottom: 10px;
-    padding-left: 1em;
   }
 
   .timeline__legend-item {
@@ -143,10 +146,15 @@
   .timeline__navigation {
     width: 100%;
     margin: 0;
+
+    @include oGridRespondTo($until: S) {
+      width: 106%;
+      margin-left: -3.5%;
+    }
   }
 
   .timeline__line-container {
-    background-color: #e6d9ce;
+    background-color: #f2dfce;
   }
 
   .timeline__buttons {
@@ -170,7 +178,7 @@
     .timeline__left-button,
     .timeline__right-button {
       flex: auto;
-      background-color: #46a5b2;
+      background-color: #0d7680;
       text-align: center;
       vertical-align: middle;
       border: none;
@@ -208,10 +216,10 @@
       border-radius: 50%;
       cursor: pointer;
       background: #b9afa5;
-      border: 2px solid #e6d9ce;
+      border: 2px solid #f2dfce;
 
       &.selected {
-        background: #46a5b2;
+        background: #0d7680;
 
         .timeline__circle__outer {
           position: relative;
@@ -221,7 +229,7 @@
           height: 11px;
           border-radius: 50%;
           cursor: pointer;
-          border: 1px solid #46a5b2;
+          border: 1px solid #0d7680;
         }
       }
 

@@ -141,7 +141,7 @@ scroller
     step: '.date-step',
     offset: ratio,
     container: '.scroll-container',
-    graphic: '.timeline-container',
+    graphic: '#timeline-container',
   })
   .onContainerEnter(() => {
     document.querySelector('#timeline-container').classList.add('tacked');
@@ -151,6 +151,8 @@ scroller
     document.querySelector('.scroll-container .content').style.paddingTop = `${height}px`;
     document.querySelector('.bottom-nav').classList.remove('hidden');
     document.querySelector('.timeline__country-banner').classList.remove('large-text');
+    document.querySelector('.timeline-inner-container').classList.add('o-grid-container');
+    document.querySelector('.timeline-cols').dataset.oGridColspan = '12 S11 Scenter M9 L8 XL7';
   })
   .onContainerExit((trigger) => {
     document.querySelector('#timeline-container').classList.remove('tacked');
@@ -158,6 +160,8 @@ scroller
     document.querySelector('.scroll-container .content').style.paddingTop = '20px';
     document.querySelector('.bottom-nav').classList.add('hidden');
     document.querySelector('.timeline__country-banner').classList.add('large-text');
+    document.querySelector('.timeline-inner-container').classList.remove('o-grid-container');
+    document.querySelector('.timeline-cols').dataset.oGridColspan = '';
   })
   .onStepEnter((trigger) => {
     // If page refreshed, add sticky header
@@ -209,7 +213,7 @@ window.addEventListener('resize', () => {
     step: '.date-step',
     offset: ratio,
     container: '.scroll-container',
-    graphic: '.timeline-container',
+    graphic: '#timeline-container',
   });
 });
 
