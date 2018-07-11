@@ -15,7 +15,7 @@ export default (environment = 'development') => ({
   headline: 'What’s at stake in US-China trade war: the full list',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Explore the more than 1,500 items threatened by new tariffs',
+  summary: 'Explore the more than 5,000 items threatened by new tariffs',
 
   topic: {
     name: 'Trade disputes',
