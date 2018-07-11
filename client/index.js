@@ -225,5 +225,14 @@ window.addEventListener('resize', () => {
 
 updateButtons(0);
 
-const firstCountry = document.querySelector(`#tariffs-${idList[0]}`).dataset.countryName;
+// Update header and timeline navigation on load
+const firstId = idList[0];
+const firstCountry = document.querySelector(`#tariffs-${firstId}`).dataset.countryName;
 updateHeader(firstCountry);
+
+const firstTime = parseTime(firstId);
+const firstTimeString = `${getMonth(firstTime)} ${getDay(firstTime).trim()}`;
+const firstValue = document.querySelector(`#tariffs-${firstId}`).dataset.cardValue;
+
+document.querySelector('.timeline__line-date').innerText = firstTimeString;
+document.querySelector('.timeline__line-value').innerText = `$${firstValue}bn`;
