@@ -126,6 +126,10 @@ module.exports = async (env = 'development') => ({
     new HtmlWebpackPlugin({
       template: 'client/index.html',
     }),
+    new HtmlWebpackPlugin({
+      filename: 'list/index.html',
+      template: 'client/list.html',
+    }),
     env === 'production'
       ? new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
       : undefined,
