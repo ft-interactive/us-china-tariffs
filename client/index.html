@@ -17,29 +17,22 @@
 {% endmarkdown %}
 
 <div class="scroll-container">
-  {% include "components/sticky-header/index.html" %}
-
-  <div class="bottom-nav hidden">
-    <button class="timeline__top-button">
-      <i class="icon-arrow-up"></i>
-      <div class="button-text">TOP</div>
-    </button>
-  </div>
-
   <div class="content">
   {% for row in timeline %}
     <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }} data-country-name={{ row.country }} data-card-value={{ row.value | roundBillion }}>
-      <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
-      <p>{{ row.blurb }}</p>
+      <div class="date-header">
+        <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
+        {% if row.relatedarticle %}
+          <a href="{{ row.relatedarticle }}" class="o-typography-link">Related article »</a>
+        {% endif %}
+      </div>
+      <p>
+        <span>{{ row.blurb }}</span>
+      </p>
       {% if groupedItems[row.name] | length > 0 %}
-      <ol>
-        {% for item in groupedItems[row.name] %}
-        <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
-          <span class="item__bullet">•</span>
-          <span class="item__name">{{ item.englishgoogletranslation }}</span>
-        </li>
-        {% endfor %}
-      </ol>
+        <p>
+          <a href="list/#tariffs-{{ row.name }}">See the full list of {{ groupedItems[row.name] | length }} items</a>
+        </p>
       {% endif %}
     </div>
   {% endfor %}

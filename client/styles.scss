@@ -216,3 +216,16 @@ span.item__name {
     }
   }
 }
+
+.date-header {
+  h2 {
+    display: inline;
+  }
+
+  a {
+    display: inline;
+    margin-left: 5px;
+  }
+
+  margin-bottom: 1em;
+}

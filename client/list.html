@@ -3,6 +3,43 @@
 
 {% block article_body %}
 
-<span>Test</span>
+<div class="list-heading">
+  <p>Below is a comprehensive list of the tariffs imposed by the US and China already, and the measures they have threatened for the future.</p>
+</div>
+
+<div class="scroll-container">
+  {% include "components/sticky-header/index.html" %}
+
+  <div class="content">
+  {% for row in timeline %}
+    <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }} data-country-name={{ row.country }} data-card-value={{ row.value | roundBillion }}>
+      <div class="date-header">
+        <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
+        {% if row.relatedarticle %}
+          <a href="{{ row.relatedarticle }}" class="o-typography-link">Related article »</a>
+        {% endif %}
+      </div>
+      {% if groupedItems[row.name] | length > 0 %}
+      <ol>
+        {% for item in groupedItems[row.name] %}
+        <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
+          <span class="item__bullet">•</span>
+          <span class="item__name">{{ item.englishgoogletranslation }}</span>
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+        <p>Data not available</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+<div id="sources">
+  {% markdown %}
+  {{ data.content.sources }}
+  {% endmarkdown %}
+</div>
 
 {% endblock %}
