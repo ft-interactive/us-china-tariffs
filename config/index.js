@@ -29,7 +29,7 @@ export default async (environment = 'development') => {
   const itemsSortedByDollarEffect = itemsWithValues.concat(itemsWithoutValues);
   const groupedItems = _.groupBy(itemsSortedByDollarEffect, item => item.date);
 
-  const timeline = data.timeline;
+  const timeline = data.timeline.filter((event) => event.display).sort((a, b) => a.name < b.name);
   const maxValue = _.pluck(timeline, 'value').reduce((a, b) => Math.max(a, b));
 
   const categorySummary = timeline.map(date => ({
@@ -50,16 +50,12 @@ export default async (environment = 'development') => {
   });
   timelineSpacing(categorySummary, 3, 1, [0, 100]);
 
-  // Calculate total trade affected by tariffs
-  const totalTradeAffected = categorySummary.reduce((a, b) => (b.display ? a + b.value : a), 0);
-
   return {
     ...d,
     data,
     groups,
     groupedItems,
     categorySummary,
-    totalTradeAffected,
     maxValue,
     timeline,
     flags,
