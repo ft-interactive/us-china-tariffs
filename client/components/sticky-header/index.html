@@ -32,12 +32,14 @@
               <div class="timeline__line-text-right"></div>
               <div class="timeline__line">
                 {% for group in categorySummary %}
+                  {% if groupedItems[group.name] | length > 0 %}
                   <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" data-card-id={{ group.name }}>
                     <div class="timeline__circle__outer"></div>
                     <div class="timeline__circle__text">
                       <div class="timeline__circle__text-date">{{ group.name | formatDate('MMMM D') }} – ${{ group.value | roundBillion }}bn</div>
                     </div>
                   </div>
+                  {% endif %}
                 {% endfor %}
               </div>
             </div>

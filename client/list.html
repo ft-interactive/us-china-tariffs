@@ -12,6 +12,7 @@
 
   <div class="content">
   {% for row in timeline %}
+    {% if groupedItems[row.name] | length > 0 %}
     <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }} data-country-name={{ row.country }} data-card-value={{ row.value | roundBillion }}>
       <div class="date-header">
         <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
@@ -19,19 +20,21 @@
           <a href="{{ row.relatedarticle }}" class="o-typography-link">Related article »</a>
         {% endif %}
       </div>
-      {% if groupedItems[row.name] | length > 0 %}
-      <ol>
-        {% for item in groupedItems[row.name] %}
-        <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
-          <span class="item__bullet">•</span>
-          <span class="item__name">{{ item.englishgoogletranslation }}</span>
-        </li>
-        {% endfor %}
-      </ol>
-      {% else %}
-        <p>Data not available</p>
-      {% endif %}
+      <div class="item-list closed">
+        <ol>
+          {% for item in groupedItems[row.name] %}
+          <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
+            <span class="item__bullet">•</span>
+            <span class="item__name">{{ item.englishgoogletranslation }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+      <div class="item-list-switch">
+        <button class="o-buttons o-buttons--primary">Show list</button>
+      </div>
     </div>
+    {% endif %}
   {% endfor %}
   </div>
 </div>

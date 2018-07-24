@@ -12,8 +12,27 @@ const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
 const getMonth = d3TimeFormat.timeFormat('%B');
 const getDay = d3TimeFormat.timeFormat('%e');
 
+function scrollToIdAndOpen(id, behavior = 'instant') {
+  const section = document.querySelector(id);
+
+  const yPos =
+    section.getBoundingClientRect().top +
+    window.scrollY -
+    document.querySelector('#timeline-container').getBoundingClientRect().height -
+    40;
+
+  window.scrollTo({ top: yPos, behavior });
+
+  const switchEl = section.querySelector('.item-list-switch button');
+  const listEl = section.querySelector('.item-list');
+
+  if (switchEl) {
+    listEl.classList.remove('closed');
+    switchEl.style.display = 'none';
+  }
+}
+
 function scrollToId(id) {
-  console.log(id);
   const yPos =
     document.querySelector(`#tariffs-${id}`).getBoundingClientRect().top +
     window.scrollY -
@@ -70,6 +89,10 @@ function updateHeader(country) {
 }
 
 function init() {
+  if (window.location.hash) {
+    scrollToIdAndOpen(window.location.hash);
+  }
+
   // // Add click events to timeline circles
   Array.from(timelineDots).forEach((timelineDot) => {
     timelineDot.addEventListener('click', () => {

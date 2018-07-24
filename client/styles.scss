@@ -2,33 +2,12 @@
 @import 'o-grid/main';
 @import 'components/core/main';
 @import 'components/core/timeline';
+@import 'components/list/list';
 
 $bullet-size: 35px;
 
 span.item__name {
   margin-left: 15px;
-}
-
-.bar.item__agriculture {
-  background: #9dbf57;
-}
-
-.bar.item__industrials {
-  background: #eb5e8d;
-}
-
-.bar.item__energy {
-  background: #70dce6;
-}
-
-.bar.item__transport {
-  background: #0f5499;
-}
-
-.bar.item__other {
-  position: absolute;
-  background: #c2b7af;
-  height: 20px;
 }
 
 .item__agriculture span.key__bullet {
@@ -113,81 +92,6 @@ span.item__name {
   }
 }
 
-#summary-graphic {
-  margin: 2em 0;
-
-  #summary-graphic__label {
-    text-align: left;
-    text-transform: uppercase;
-    width: 100%;
-    padding-bottom: 5px;
-    border-bottom: 1px solid oColorsGetPaletteColor('black-20');
-    margin-bottom: 10px;
-  }
-
-  .bar-group-name {
-    width: 100%;
-    margin-top: 1em;
-    margin-bottom: 10px;
-  }
-
-  .bar-wrapper-outer {
-    display: flex;
-
-    .bar-wrapper {
-      position: relative;
-      width: 100%;
-
-      .bar-container__line {
-        position: absolute;
-        border-bottom: 1px solid oColorsGetPaletteColor('black-10');
-        width: 100%;
-        height: 10px;
-      }
-
-      .bar-container {
-        width: 100%;
-        height: 24px;
-        position: relative;
-
-        .bar {
-          float: left;
-          height: 20px;
-          z-index: 2;
-        }
-      }
-    }
-
-    .bar-group-metadata {
-      display: flex;
-      justify-content: flex-end;
-      color: oColorsGetPaletteColor('black-60');
-
-      .bar-group-metadata__value {
-        font-size: 1.3em;
-        line-height: 1em;
-        text-align: right;
-        margin-right: 10px;
-
-        @include oGridRespondTo($until: S) {
-          font-size: 1em;
-        }
-      }
-
-      .bar-group-metadata__proposal {
-        font-size: 0.8em;
-        font-style: italic;
-      }
-
-      .summary-item .key__bullet {
-        width: 26px;
-        height: 26px;
-        display: block;
-      }
-    }
-  }
-}
-
 :root .o-typography-wrapper ol {
   column-count: 1;
 
@@ -215,17 +119,4 @@ span.item__name {
       top: -3px;
     }
   }
-}
-
-.date-header {
-  h2 {
-    display: inline;
-  }
-
-  a {
-    display: inline;
-    margin-left: 5px;
-  }
-
-  margin-bottom: 1em;
 }
