@@ -10,7 +10,7 @@ export default (environment = 'development') => ({
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
-  publishedDate: new Date(),
+  publishedDate: new Date('2018-07-19T10:11:09.078Z'),
 
   headline: 'What’s at stake in US-China trade war: the full list',
 
