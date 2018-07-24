@@ -69,7 +69,7 @@ function clearCirclesExcept(id) {
 }
 
 function updateTimelineSelection(id) {
-  const circle = document.querySelector(`.timeline__circle[data-card-id="${id}"`);
+  const circle = document.querySelector(`.timeline__circle[data-card-id="${id}"]`);
   circle.classList.add('selected');
   clearCirclesExcept(id);
 }
