@@ -18,8 +18,8 @@ export default (environment = 'development') => ({
   summary: 'Explore the more than 5,000 items threatened by new tariffs',
 
   topic: {
-    name: 'Trade disputes',
-    url: 'https://www.ft.com/stream/49181791-a1a9-4966-ac30-010846ec76d8',
+    name: 'US-China trade dispute',
+    url: 'https://www.ft.com/us-china-trade-dispute',
   },
 
   // relatedArticle: {
@@ -42,12 +42,12 @@ export default (environment = 'development') => ({
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
+    { name: 'Jane Pong', url: 'https://www.ft.com/jane-pong' },
+    { name: 'Cale Tilford', url: 'https://www.ft.com/cale-tilford' },
     { name: 'Joanna S Kao', url: 'https://www.ft.com/joanna-s-kao' },
     { name: 'Ed Crooks', url: 'https://www.ft.com/stream/42dab372-28d1-364c-b4f2-fc7c4a07e906' },
-    { name: 'Jane Pong', url: 'https://www.ft.com/jane-pong' },
     { name: 'Robin Kwong', url: 'https://www.ft.com/robin-kwong' },
     { name: 'Tom Hancock', url: 'https://www.ft.com/stream/95f0a07f-a3b1-32ff-ba04-45ad17ad1159' },
-    { name: 'Cale Tilford', url: 'https://www.ft.com/cale-tilford' },
   ],
 
   // Appears in the HTML <title>
