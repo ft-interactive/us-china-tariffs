@@ -1,0 +1,48 @@
+{% import "macros.html" as macros %}
+{% extends "layout-list.html" %}
+
+{% block article_body %}
+
+<div class="list-heading">
+  <p>Below is a comprehensive list of the tariffs imposed by the US and China already, and the measures they have threatened for the future. See our <a href="https://ig.ft.com/us-china-tariffs/">timeline for more context</a>.</p>
+</div>
+
+<div class="scroll-container">
+  {% include "components/sticky-header/index.html" %}
+
+  <div class="content">
+  {% for row in timeline %}
+    {% if groupedItems[row.name] | length > 0 %}
+    <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }} data-country-name={{ row.country }} data-card-value={{ row.value | roundBillion }}>
+      <div class="date-header">
+        <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
+        {% if row.relatedarticle %}
+          <a href="{{ row.relatedarticle }}" class="o-typography-link">Related article »</a>
+        {% endif %}
+      </div>
+      <div class="item-list closed">
+        <ol>
+          {% for item in groupedItems[row.name] %}
+          <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
+            <span class="item__bullet">•</span>
+            <span class="item__name">{{ item.englishgoogletranslation }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+      <div class="item-list-switch">
+        <button class="o-buttons o-buttons--primary">Show list</button>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+  </div>
+</div>
+
+<div id="sources">
+  {% markdown %}
+  {{ data.content.sources }}
+  {% endmarkdown %}
+</div>
+
+{% endblock %}

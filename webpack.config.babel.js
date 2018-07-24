@@ -86,7 +86,7 @@ module.exports = async (env = 'development') => ({
           {
             loader: 'nunjucks-html-loader',
             options: {
-              searchPaths: [resolve(__dirname, 'views')],
+              searchPaths: [resolve(__dirname, 'views'), resolve(__dirname, 'client')],
               filters: nunjucksFilters,
               context: await getContext(env),
             },
@@ -125,6 +125,10 @@ module.exports = async (env = 'development') => ({
     // instructions for generating multiple HTML files: https://github.com/jantimon/html-webpack-plugin#generating-multiple-html-files
     new HtmlWebpackPlugin({
       template: 'client/index.html',
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'list/index.html',
+      template: 'client/list.html',
     }),
     env === 'production'
       ? new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })

@@ -1,0 +1,66 @@
+<div id="timeline-wrapper">
+  <div id="timeline-container" class="initial">
+    <div class="timeline-inner-container">
+      <div class="o-grid-row">
+        <div class="timeline-cols" data-o-grid-colspan="">
+          <div class="timeline__country-banner large-text china">
+            <span class="key__bullet"></span>
+            <span class="text">Chinese tariffs on US goods</span>
+          </div>
+
+          <div class="timeline__legend">
+            <span class="timeline__legend-key-title">Key</span>
+            {% for group in groups %}
+              <div class="timeline__legend-item item__{{ group }}">
+                <span class="key__bullet"></span>
+                <span class="item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
+              </div>
+            {% endfor %}
+            <div class="timeline__legend-item item__others">
+              <span class="key__bullet"></span>
+              <span class="item__name">Uncategorised</span>
+            </div>
+          </div>
+
+          <div class="timeline__navigation o-grid-row">
+            <div class="timeline__line-container" data-o-grid-colspan="8 S10">
+              <div class="timeline__line-text-left">
+                <span class="timeline__line-date">Latest</span>
+                <span>–</span>
+                <span class="timeline__line-value">$bn</span>
+              </div>
+              <div class="timeline__line-text-right"></div>
+              <div class="timeline__line">
+                {% for group in categorySummary %}
+                  {% if groupedItems[group.name] | length > 0 %}
+                  <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" data-card-id={{ group.name }}>
+                    <div class="timeline__circle__outer"></div>
+                    <div class="timeline__circle__text">
+                      <div class="timeline__circle__text-date">{{ group.name | formatDate('MMMM D') }} – ${{ group.value | roundBillion }}bn</div>
+                    </div>
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="timeline__buttons" data-o-grid-colspan="4 S2">
+              <button class="timeline__left-button">
+                <i class="icon-arrow-left"></i>
+              </button>
+              <button class="timeline__right-button">
+                <i class="icon-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-nav hidden">
+  <button class="timeline__top-button">
+    <i class="icon-arrow-up"></i>
+    <div class="button-text">TOP</div>
+  </button>
+</div>
