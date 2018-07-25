@@ -11,27 +11,35 @@
   {% include "components/sticky-header/index.html" %}
 
   <div class="content">
-  {% for row in timeline %}
-    {% if groupedItems[row.name] | length > 0 %}
-    <div class="date-step" id="tariffs-{{ row.name }}" data-card-id={{ row.name }} data-country-name={{ row.country }} data-card-value={{ row.value | roundBillion }}>
+  {% for event in timeline %}
+    {% if event.type !== 'announced' %}
+    <div class="date-step" id="tariffs-{{ event.name }}" data-card-id={{ event.name }} data-country-name={{ event.country }} data-card-value={{ event.value | roundBillion }}>
       <div class="date-header">
-        <h2>{{ row.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
-        {% if row.relatedarticle %}
-          <a href="{{ row.relatedarticle }}" class="o-typography-link">Related article »</a>
+        <h2>{{ event.name | formatDate('dddd, MMMM D, YYYY') }}</h2>
+        {% if event.relatedarticle %}
+          <a href="{{ event.relatedarticle }}" class="o-typography-link">Related article »</a>
         {% endif %}
       </div>
-      <div class="item-list closed">
-        <ol>
-          {% for item in groupedItems[row.name] %}
-          <li class="item__{{ item.category }}" data-dollareffect="{{ item.dollareffect }}">
-            <span class="item__bullet">•</span>
-            <span class="item__name">{{ item.englishgoogletranslation }}</span>
-          </li>
-          {% endfor %}
-        </ol>
-      </div>
+      {% set eventTranches = [] %}
+      {% for eventGoods in timelineGoods %}
+        {% if eventGoods.date === event.name and eventGoods.country === event.country %}
+          {% set eventTranches = eventGoods.tranches %}
+        {% endif %}
+      {% endfor %}
+      {% for tranche in eventTranches %}
+        <div class="item-list closed">
+          <ol>
+            {% for good in tranche.goods %}
+            <li class="item__{{ good.category }}" data-code="{% if (good.codehts !== 'n/a') %}{{ good.codehts }}{% else %}{{ good.codechs }}{% endif %}">
+              <span class="item__bullet">•</span>
+              <span class="item__name">{{ good.description }}</span>
+            </li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% endfor %}
       <div class="item-list-switch">
-        <button class="o-buttons o-buttons--primary">Show list</button>
+        <button class="o-buttons o-buttons--primary">{% if (eventTranches | length) <= 1 %}Show list{% else %}Show lists{% endif %}</button>
       </div>
     </div>
     {% endif %}

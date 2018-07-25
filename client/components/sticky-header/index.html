@@ -10,10 +10,10 @@
 
           <div class="timeline__legend">
             <span class="timeline__legend-key-title">Key</span>
-            {% for group in groups %}
-              <div class="timeline__legend-item item__{{ group }}">
+            {% for category in categories %}
+              <div class="timeline__legend-item item__{{ category }}">
                 <span class="key__bullet"></span>
-                <span class="item__name">{% if group === 'industrials' %}Industrial products / technology{% else %}{{ group | capitalize }}{% endif %}</span>
+                <span class="item__name">{% if category === 'industrials' %}Industrial products / technology{% else %}{{ category | capitalize }}{% endif %}</span>
               </div>
             {% endfor %}
             <div class="timeline__legend-item item__others">
@@ -31,12 +31,12 @@
               </div>
               <div class="timeline__line-text-right"></div>
               <div class="timeline__line">
-                {% for group in categorySummary %}
-                  {% if groupedItems[group.name] | length > 0 %}
-                  <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" data-card-id={{ group.name }}>
+                {% for event in timeline %}
+                  {% if event.type !== 'announced' %}
+                  <div class="timeline__circle {% if loop.index0 == 0 %} selected {% endif %}" data-card-id={{ event.name }}>
                     <div class="timeline__circle__outer"></div>
                     <div class="timeline__circle__text">
-                      <div class="timeline__circle__text-date">{{ group.name | formatDate('MMMM D') }} – ${{ group.value | roundBillion }}bn</div>
+                      <div class="timeline__circle__text-date">{{ event.name | formatDate('MMMM D') }} – ${{ event.value | roundBillion }}bn</div>
                     </div>
                   </div>
                   {% endif %}

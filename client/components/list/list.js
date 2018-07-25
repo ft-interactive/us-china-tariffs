@@ -5,10 +5,10 @@ function init() {
 
   sections.forEach((section) => {
     const switchEl = section.querySelector('.item-list-switch button');
-    const listEl = section.querySelector('.item-list');
+    const listEl = section.querySelectorAll('.item-list');
     if (switchEl) {
       switchEl.addEventListener('click', () => {
-        listEl.classList.remove('closed');
+        Array.from(listEl).forEach(element => element.classList.remove('closed'));
         Waypoint.refreshAll();
         switchEl.style.display = 'none';
       });

@@ -115,10 +115,10 @@ export function formatDate(date, format) {
   return moment(date).format(format);
 }
 
-export function getDollarSum(data) {
-  return _.reduce(_.pluck(data, 'dollareffectgroup'), (a, b) => a + b);
-}
-
 export function roundBillion(number) {
   return Math.round((number * 100) / 100000000000);
+}
+
+export function humanise(number) {
+  return number.toLocaleString();
 }

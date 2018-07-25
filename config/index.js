@@ -1,6 +1,4 @@
 import * as bertha from 'bertha-client';
-import _ from 'underscore';
-import * as d3Array from 'd3-array';
 import * as d3TimeFormat from 'd3-time-format';
 import * as d3Scale from 'd3-scale';
 
@@ -16,48 +14,57 @@ export default async (environment = 'development') => {
 
   const data = await bertha.get(
     '1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo',
-    ['items', 'content|object', 'timeline'],
+    ['timeline', 'goods', 'content|object'],
     { republish: true },
   );
-  const groups = _.uniq(_.pluck(data.items, 'category'));
 
-  const itemsWithoutValues = data.items.filter(a => a.dollareffect === null);
-  const itemsWithValues = _.sortBy(
-    data.items.filter(a => a.dollareffect !== null),
-    item => -item.dollareffect,
-  );
-  const itemsSortedByDollarEffect = itemsWithValues.concat(itemsWithoutValues);
-  const groupedItems = _.groupBy(itemsSortedByDollarEffect, item => item.date);
+  const categories = Array.from(new Set(data.goods.map(good => good.category)));
 
-  const timeline = data.timeline.filter((event) => event.display).sort((a, b) => a.name < b.name);
-  const maxValue = _.pluck(timeline, 'value').reduce((a, b) => Math.max(a, b));
+  const timeline = data.timeline.filter(event => event.display).sort((a, b) => a.name < b.name);
 
-  const categorySummary = timeline.map(date => ({
-    ...date,
-    categories: _.groupBy(_.sortBy(groupedItems[date.name], a => a.category), 'category'),
-  }));
+  const timelineGoods = timeline.reduce((a, event) => {
+    const eventGoods = data.goods.filter(good => good.date === event.name && good.country === event.country);
+    if (eventGoods.length === 0) return a;
+    const tranchNumbers = Array.from(new Set(eventGoods.map(good => good.tranche)));
+    const tranches = tranchNumbers.map((tranche) => {
+      const trancheGoods = eventGoods.filter(good => good.tranche === tranche).sort((a, b) => {
+        return a.value < b.value;
+      });
+      return {
+        tranche,
+        type: trancheGoods[0].type, // assume they're all the same in this tranche
+        goods: trancheGoods,
+      };
+    })
+    const item = {
+      date: event.name,
+      country: event.country,
+      tranches,
+    };
+    return a.concat(item)
+  }, []);
 
   // Calculate positions in the timeline
   const parseTime = d3TimeFormat.timeParse('%Y-%m-%d');
-  const max = d3Array.max(categorySummary, x => parseTime(x.name));
-  const min = d3Array.min(categorySummary, x => parseTime(x.name));
+  const timeMin = parseTime(timeline[timeline.length - 1].name);
+  const timeMax = parseTime(timeline[0].name);
   const timeScale = d3Scale
     .scaleTime()
-    .domain([min, max])
+    .domain([timeMin, timeMax])
     .range([0, 100]);
-  categorySummary.forEach((x, i) => {
-    x.time = timeScale(parseTime(x.name));
+  const timelineDates = timeline.map((event) => {
+    return {
+      name: event.name,
+      time: timeScale(parseTime(event.name)),
+    };
   });
-  timelineSpacing(categorySummary, 3, 1, [0, 100]);
+  timelineSpacing(timelineDates, 3, 1, [0, 100]);
 
   return {
     ...d,
-    data,
-    groups,
-    groupedItems,
-    categorySummary,
-    maxValue,
+    categories,
     timeline,
+    timelineGoods,
     flags,
     onwardJourney,
   };
