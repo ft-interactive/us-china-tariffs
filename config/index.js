@@ -17,7 +17,7 @@ export default async (environment = 'development') => {
   const data = await bertha.get(
     '1VCgf3zQ8w1j0uFJDaPEnc3xRlZ9XCXD8JQlg4jF0gPo',
     ['items', 'content|object', 'timeline'],
-    { republish: true },
+    { republish: false },
   );
   const groups = _.uniq(_.pluck(data.items, 'category'));
 
